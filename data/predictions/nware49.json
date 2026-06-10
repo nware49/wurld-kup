@@ -2,71 +2,63 @@
   "version": 1,
   "user": "nware49",
   "name": "nate",
-  "submittedAt": "2026-06-10T02:17:00.000Z",
-  "payload": "WK1|nate|A=3-0,3-1,0-4,2-1,2-3,4-0;B=3-1,0-3,0-2,3-1,2-2,0-1;C=0-0,1-2,2-2,1-3,2-4,3-2;D=2-0,0-3,1-1,2-1,4-2,0-2;E=1-2,0-3,1-0,1-1,2-0,2-2;F=0-3,0-3,2-2,1-1,2-2,1-2;G=3-1,3-3,2-2,2-2,4-3,1-4;H=3-4,1-1,4-1,1-1,0-2,2-4;I=3-2,1-2,4-3,2-0,0-3,1-3;J=2-0,1-1,1-1,2-3,4-3,4-3;K=2-2,2-1,4-1,1-0,2-0,2-2;L=1-0,2-1,2-0,2-2,3-3,1-2|73=2-0;74=3-0;75=1-3;76=3-3:2;77=3-1;78=4-2;79=0-2;80=3-0;81=0-2;82=1-2;83=3-3:2;84=4-1;85=1-3;86=1-1:2;87=2-1;88=3-1;89=2-1;90=4-2;91=1-1:1;92=3-2;93=1-3;94=4-2;95=2-1;96=1-3;97=2-1;98=1-1:1;99=3-3:1;100=2-2:2;101=3-4;102=1-0;103=4-1;104=1-2",
+  "submittedAt": "2026-06-10T02:47:47.000Z",
+  "payload": "WK1|nate|A=2-0,3-0,1-4,1-2,0-0,3-2;B=2-2,1-2,2-2,3-2,2-1,2-1;C=2-2,1-3,2-2,1-0,2-0,2-1;D=2-1,1-0,1-2,1-0,1-2,2-1;E=0-1,2-1,3-1,4-1,3-2,1-1;F=2-2,3-2,3-2,1-1,2-3,4-2;G=3-1,4-0,3-3,3-4,3-4,0-0;H=2-1,3-4,2-2,2-4,0-1,3-3;I=0-3,2-1,3-3,1-1,2-3,0-1;J=0-2,2-2,3-3,0-0,1-1,1-2;K=2-2,1-3,1-1,2-1,4-2,0-2;L=0-1,1-1,1-1,3-0,2-0,3-1|73=2-0;74=2-3;75=3-0;76=0-0:2;77=2-2:2;78=3-4;79=1-2;80=3-3:1;81=2-2:1;82=3-0;83=2-2:2;84=0-0:1;85=1-1:2;86=2-3;87=2-4;88=0-4;89=1-1:2;90=4-0;91=1-2;92=0-1;93=1-2;94=4-4:1;95=3-2;96=3-2;97=0-0:1;98=0-1;99=0-0:2;100=0-3;101=2-1;102=2-0;103=2-1;104=2-1",
   "groups": {
     "A": [
       [
-        3,
+        2,
         0
       ],
       [
         3,
-        1
+        0
       ],
       [
-        0,
+        1,
         4
       ],
       [
-        2,
-        1
+        1,
+        2
       ],
       [
-        2,
-        3
-      ],
-      [
-        4,
+        0,
         0
+      ],
+      [
+        3,
+        2
       ]
     ],
     "B": [
       [
-        3,
-        1
-      ],
-      [
-        0,
-        3
-      ],
-      [
-        0,
+        2,
         2
       ],
       [
-        3,
-        1
+        1,
+        2
       ],
       [
         2,
         2
       ],
       [
-        0,
+        3,
+        2
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
         1
       ]
     ],
     "C": [
       [
-        0,
-        0
-      ],
-      [
-        1,
-        2
-      ],
-      [
         2,
         2
       ],
@@ -76,76 +68,84 @@
       ],
       [
         2,
-        4
+        2
       ],
       [
-        3,
-        2
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        2,
+        1
       ]
     ],
     "D": [
       [
         2,
-        0
-      ],
-      [
-        0,
-        3
+        1
       ],
       [
         1,
-        1
+        0
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        2
       ],
       [
         2,
         1
-      ],
-      [
-        4,
-        2
-      ],
-      [
-        0,
-        2
       ]
     ],
     "E": [
       [
-        1,
-        2
-      ],
-      [
         0,
-        3
-      ],
-      [
-        1,
-        0
-      ],
-      [
-        1,
         1
       ],
       [
         2,
-        0
+        1
       ],
       [
-        2,
+        3,
+        1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        3,
         2
+      ],
+      [
+        1,
+        1
       ]
     ],
     "F": [
       [
-        0,
-        3
-      ],
-      [
-        0,
-        3
-      ],
-      [
         2,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        3,
         2
       ],
       [
@@ -154,10 +154,10 @@
       ],
       [
         2,
-        2
+        3
       ],
       [
-        1,
+        4,
         2
       ]
     ],
@@ -167,81 +167,93 @@
         1
       ],
       [
+        4,
+        0
+      ],
+      [
         3,
         3
       ],
       [
-        2,
-        2
-      ],
-      [
-        2,
-        2
-      ],
-      [
-        4,
-        3
-      ],
-      [
-        1,
+        3,
         4
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        0,
+        0
       ]
     ],
     "H": [
       [
+        2,
+        1
+      ],
+      [
         3,
         4
       ],
       [
-        1,
-        1
-      ],
-      [
-        4,
-        1
-      ],
-      [
-        1,
-        1
-      ],
-      [
-        0,
+        2,
         2
       ],
       [
         2,
         4
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        3,
+        3
       ]
     ],
     "I": [
       [
-        3,
-        2
-      ],
-      [
-        1,
-        2
-      ],
-      [
-        4,
-        3
-      ],
-      [
-        2,
-        0
-      ],
-      [
         0,
         3
       ],
       [
-        1,
+        2,
+        1
+      ],
+      [
+        3,
         3
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        1
       ]
     ],
     "J": [
       [
+        0,
+        2
+      ],
+      [
         2,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        0,
         0
       ],
       [
@@ -250,19 +262,7 @@
       ],
       [
         1,
-        1
-      ],
-      [
-        2,
-        3
-      ],
-      [
-        4,
-        3
-      ],
-      [
-        4,
-        3
+        2
       ]
     ],
     "K": [
@@ -271,406 +271,406 @@
         2
       ],
       [
+        1,
+        3
+      ],
+      [
+        1,
+        1
+      ],
+      [
         2,
         1
       ],
       [
         4,
-        1
+        2
       ],
       [
-        1,
-        0
-      ],
-      [
-        2,
-        0
-      ],
-      [
-        2,
+        0,
         2
       ]
     ],
     "L": [
       [
-        1,
-        0
-      ],
-      [
-        2,
+        0,
         1
       ],
       [
-        2,
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        3,
         0
       ],
       [
         2,
-        2
+        0
       ],
       [
         3,
-        3
-      ],
-      [
-        1,
-        2
+        1
       ]
     ]
   },
   "knockout": {
     "73": {
       "round": "R32",
-      "home": "RSA",
-      "away": "BIH",
+      "home": "MEX",
+      "away": "CAN",
       "score": [
         2,
         0
       ],
       "pens": null,
-      "winner": "RSA"
+      "winner": "MEX"
     },
     "74": {
       "round": "R32",
-      "home": "GER",
-      "away": "CAN",
+      "home": "ECU",
+      "away": "TUN",
+      "score": [
+        2,
+        3
+      ],
+      "pens": null,
+      "winner": "TUN"
+    },
+    "75": {
+      "round": "R32",
+      "home": "JPN",
+      "away": "BRA",
       "score": [
         3,
         0
       ],
       "pens": null,
-      "winner": "GER"
-    },
-    "75": {
-      "round": "R32",
-      "home": "TUN",
-      "away": "MAR",
-      "score": [
-        1,
-        3
-      ],
-      "pens": null,
-      "winner": "MAR"
+      "winner": "JPN"
     },
     "76": {
       "round": "R32",
-      "home": "HAI",
-      "away": "JPN",
+      "home": "MAR",
+      "away": "NED",
       "score": [
-        3,
-        3
+        0,
+        0
       ],
       "pens": 2,
-      "winner": "JPN"
+      "winner": "NED"
     },
     "77": {
       "round": "R32",
-      "home": "IRQ",
-      "away": "KSA",
+      "home": "NOR",
+      "away": "BEL",
       "score": [
-        3,
-        1
+        2,
+        2
       ],
-      "pens": null,
-      "winner": "IRQ"
+      "pens": 2,
+      "winner": "BEL"
     },
     "78": {
       "round": "R32",
-      "home": "ECU",
-      "away": "FRA",
+      "home": "GER",
+      "away": "SEN",
       "score": [
-        4,
-        2
+        3,
+        4
       ],
       "pens": null,
-      "winner": "ECU"
+      "winner": "SEN"
     },
     "79": {
       "round": "R32",
       "home": "KOR",
-      "away": "CUW",
+      "away": "IRQ",
       "score": [
-        0,
+        1,
         2
       ],
       "pens": null,
-      "winner": "CUW"
+      "winner": "IRQ"
     },
     "80": {
       "round": "R32",
-      "home": "ENG",
-      "away": "UZB",
+      "home": "CRO",
+      "away": "COL",
+      "score": [
+        3,
+        3
+      ],
+      "pens": 1,
+      "winner": "CRO"
+    },
+    "81": {
+      "round": "R32",
+      "home": "TUR",
+      "away": "BIH",
+      "score": [
+        2,
+        2
+      ],
+      "pens": 1,
+      "winner": "TUR"
+    },
+    "82": {
+      "round": "R32",
+      "home": "NZL",
+      "away": "CZE",
       "score": [
         3,
         0
       ],
       "pens": null,
-      "winner": "ENG"
-    },
-    "81": {
-      "round": "R32",
-      "home": "USA",
-      "away": "SWE",
-      "score": [
-        0,
-        2
-      ],
-      "pens": null,
-      "winner": "SWE"
-    },
-    "82": {
-      "round": "R32",
-      "home": "BEL",
-      "away": "NOR",
-      "score": [
-        1,
-        2
-      ],
-      "pens": null,
-      "winner": "NOR"
+      "winner": "NZL"
     },
     "83": {
       "round": "R32",
-      "home": "COL",
-      "away": "GHA",
+      "home": "UZB",
+      "away": "ENG",
       "score": [
-        3,
-        3
+        2,
+        2
       ],
       "pens": 2,
-      "winner": "GHA"
+      "winner": "ENG"
     },
     "84": {
       "round": "R32",
       "home": "CPV",
-      "away": "JOR",
+      "away": "AUT",
       "score": [
-        4,
-        1
+        0,
+        0
       ],
-      "pens": null,
+      "pens": 1,
       "winner": "CPV"
     },
     "85": {
       "round": "R32",
-      "home": "QAT",
-      "away": "AUT",
-      "score": [
-        1,
-        3
-      ],
-      "pens": null,
-      "winner": "AUT"
-    },
-    "86": {
-      "round": "R32",
-      "home": "ARG",
-      "away": "URU",
+      "home": "SUI",
+      "away": "CIV",
       "score": [
         1,
         1
       ],
       "pens": 2,
-      "winner": "URU"
+      "winner": "CIV"
+    },
+    "86": {
+      "round": "R32",
+      "home": "ALG",
+      "away": "ESP",
+      "score": [
+        2,
+        3
+      ],
+      "pens": null,
+      "winner": "ESP"
     },
     "87": {
       "round": "R32",
       "home": "POR",
-      "away": "PAR",
+      "away": "JOR",
       "score": [
         2,
-        1
+        4
       ],
       "pens": null,
-      "winner": "POR"
+      "winner": "JOR"
     },
     "88": {
       "round": "R32",
       "home": "AUS",
       "away": "EGY",
       "score": [
-        3,
-        1
+        0,
+        4
       ],
       "pens": null,
-      "winner": "AUS"
+      "winner": "EGY"
     },
     "89": {
       "round": "R16",
-      "home": "GER",
-      "away": "IRQ",
+      "home": "TUN",
+      "away": "BEL",
       "score": [
-        2,
+        1,
         1
       ],
-      "pens": null,
-      "winner": "GER"
+      "pens": 2,
+      "winner": "BEL"
     },
     "90": {
       "round": "R16",
-      "home": "RSA",
-      "away": "MAR",
+      "home": "MEX",
+      "away": "JPN",
       "score": [
         4,
-        2
+        0
       ],
       "pens": null,
-      "winner": "RSA"
+      "winner": "MEX"
     },
     "91": {
       "round": "R16",
-      "home": "JPN",
-      "away": "ECU",
+      "home": "NED",
+      "away": "SEN",
       "score": [
         1,
-        1
-      ],
-      "pens": 1,
-      "winner": "JPN"
-    },
-    "92": {
-      "round": "R16",
-      "home": "CUW",
-      "away": "ENG",
-      "score": [
-        3,
         2
       ],
       "pens": null,
-      "winner": "CUW"
+      "winner": "SEN"
+    },
+    "92": {
+      "round": "R16",
+      "home": "IRQ",
+      "away": "CRO",
+      "score": [
+        0,
+        1
+      ],
+      "pens": null,
+      "winner": "CRO"
     },
     "93": {
       "round": "R16",
-      "home": "GHA",
+      "home": "ENG",
       "away": "CPV",
       "score": [
         1,
-        3
+        2
       ],
       "pens": null,
       "winner": "CPV"
     },
     "94": {
       "round": "R16",
-      "home": "SWE",
-      "away": "NOR",
+      "home": "TUR",
+      "away": "NZL",
       "score": [
         4,
-        2
+        4
       ],
-      "pens": null,
-      "winner": "SWE"
+      "pens": 1,
+      "winner": "TUR"
     },
     "95": {
       "round": "R16",
-      "home": "URU",
-      "away": "AUS",
+      "home": "ESP",
+      "away": "EGY",
       "score": [
-        2,
-        1
+        3,
+        2
       ],
       "pens": null,
-      "winner": "URU"
+      "winner": "ESP"
     },
     "96": {
       "round": "R16",
-      "home": "AUT",
-      "away": "POR",
+      "home": "CIV",
+      "away": "JOR",
       "score": [
-        1,
-        3
+        3,
+        2
       ],
       "pens": null,
-      "winner": "POR"
+      "winner": "CIV"
     },
     "97": {
       "round": "QF",
-      "home": "GER",
-      "away": "RSA",
+      "home": "BEL",
+      "away": "MEX",
       "score": [
-        2,
-        1
+        0,
+        0
       ],
-      "pens": null,
-      "winner": "GER"
+      "pens": 1,
+      "winner": "BEL"
     },
     "98": {
       "round": "QF",
       "home": "CPV",
-      "away": "SWE",
+      "away": "TUR",
       "score": [
-        1,
+        0,
         1
       ],
-      "pens": 1,
-      "winner": "CPV"
+      "pens": null,
+      "winner": "TUR"
     },
     "99": {
       "round": "QF",
-      "home": "JPN",
-      "away": "CUW",
+      "home": "SEN",
+      "away": "CRO",
       "score": [
-        3,
-        3
+        0,
+        0
       ],
-      "pens": 1,
-      "winner": "JPN"
+      "pens": 2,
+      "winner": "CRO"
     },
     "100": {
       "round": "QF",
-      "home": "URU",
-      "away": "POR",
+      "home": "ESP",
+      "away": "CIV",
       "score": [
-        2,
-        2
+        0,
+        3
       ],
-      "pens": 2,
-      "winner": "POR"
+      "pens": null,
+      "winner": "CIV"
     },
     "101": {
       "round": "SF",
-      "home": "GER",
-      "away": "CPV",
+      "home": "BEL",
+      "away": "TUR",
       "score": [
-        3,
-        4
-      ],
-      "pens": null,
-      "winner": "CPV"
-    },
-    "102": {
-      "round": "SF",
-      "home": "JPN",
-      "away": "POR",
-      "score": [
-        1,
-        0
-      ],
-      "pens": null,
-      "winner": "JPN"
-    },
-    "103": {
-      "round": "3P",
-      "home": "GER",
-      "away": "POR",
-      "score": [
-        4,
+        2,
         1
       ],
       "pens": null,
-      "winner": "GER"
+      "winner": "BEL"
+    },
+    "102": {
+      "round": "SF",
+      "home": "CRO",
+      "away": "CIV",
+      "score": [
+        2,
+        0
+      ],
+      "pens": null,
+      "winner": "CRO"
+    },
+    "103": {
+      "round": "3P",
+      "home": "TUR",
+      "away": "CIV",
+      "score": [
+        2,
+        1
+      ],
+      "pens": null,
+      "winner": "TUR"
     },
     "104": {
       "round": "F",
-      "home": "CPV",
-      "away": "JPN",
+      "home": "BEL",
+      "away": "CRO",
       "score": [
-        1,
-        2
+        2,
+        1
       ],
       "pens": null,
-      "winner": "JPN"
+      "winner": "BEL"
     }
   },
-  "champion": "JPN"
+  "champion": "BEL"
 }
