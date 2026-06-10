@@ -1,0 +1,676 @@
+{
+  "version": 1,
+  "user": "Mannschaft26",
+  "name": "mannschaft26",
+  "submittedAt": "2026-06-10T21:41:12.000Z",
+  "payload": "WK1|mannschaft26|A=3-1,1-2,2-1,2-3,3-3,2-1;B=1-2,1-3,3-1,2-2,2-0,3-1;C=3-1,2-1,3-1,2-0,4-1,2-1;D=3-2,2-2,3-1,2-1,3-1,1-3;E=4-1,1-1,3-1,2-0,4-0,2-1;F=1-2,2-1,1-2,2-0,1-1,1-2;G=1-2,2-2,2-1,1-1,2-1,1-1;H=3-0,2-2,4-0,2-2,3-1,1-1;I=3-1,2-0,3-2,1-1,2-1,1-2;J=2-0,1-1,3-1,2-0,2-0,1-1;K=3-2,1-1,2-1,2-1,2-1,2-2;L=2-2,1-1,3-1,3-1,2-0,2-0|73=3-1;74=3-1;75=2-1;76=3-1;77=4-2;78=2-3;79=3-2;80=3-1;81=2-1;82=2-1;83=1-3;84=3-1;85=3-1;86=4-2;87=4-2;88=5-4;89=4-3;90=3-4;91=3-1;92=2-4;93=2-4;94=2-3;95=2-1;96=2-4;97=4-1;98=3-1;99=3-2;100=2-4;101=3-2;102=3-1;103=4-2;104=4-2",
+  "groups": {
+    "A": [
+      [
+        3,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        2,
+        1
+      ]
+    ],
+    "B": [
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        3,
+        1
+      ]
+    ],
+    "C": [
+      [
+        3,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        2,
+        1
+      ]
+    ],
+    "D": [
+      [
+        3,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        1,
+        3
+      ]
+    ],
+    "E": [
+      [
+        4,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        2,
+        1
+      ]
+    ],
+    "F": [
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    "G": [
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "H": [
+      [
+        3,
+        0
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "I": [
+      [
+        3,
+        1
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    "J": [
+      [
+        2,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "K": [
+      [
+        3,
+        2
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        2
+      ]
+    ],
+    "L": [
+      [
+        2,
+        2
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ]
+  },
+  "knockout": {
+    "73": {
+      "round": "R32",
+      "home": "CZE",
+      "away": "CAN",
+      "score": [
+        3,
+        1
+      ],
+      "pens": null,
+      "winner": "CZE"
+    },
+    "74": {
+      "round": "R32",
+      "home": "GER",
+      "away": "BIH",
+      "score": [
+        3,
+        1
+      ],
+      "pens": null,
+      "winner": "GER"
+    },
+    "75": {
+      "round": "R32",
+      "home": "SWE",
+      "away": "MAR",
+      "score": [
+        2,
+        1
+      ],
+      "pens": null,
+      "winner": "SWE"
+    },
+    "76": {
+      "round": "R32",
+      "home": "BRA",
+      "away": "JPN",
+      "score": [
+        3,
+        1
+      ],
+      "pens": null,
+      "winner": "BRA"
+    },
+    "77": {
+      "round": "R32",
+      "home": "FRA",
+      "away": "SCO",
+      "score": [
+        4,
+        2
+      ],
+      "pens": null,
+      "winner": "FRA"
+    },
+    "78": {
+      "round": "R32",
+      "home": "ECU",
+      "away": "NOR",
+      "score": [
+        2,
+        3
+      ],
+      "pens": null,
+      "winner": "NOR"
+    },
+    "79": {
+      "round": "R32",
+      "home": "MEX",
+      "away": "URU",
+      "score": [
+        3,
+        2
+      ],
+      "pens": null,
+      "winner": "MEX"
+    },
+    "80": {
+      "round": "R32",
+      "home": "CRO",
+      "away": "UZB",
+      "score": [
+        3,
+        1
+      ],
+      "pens": null,
+      "winner": "CRO"
+    },
+    "81": {
+      "round": "R32",
+      "home": "USA",
+      "away": "ALG",
+      "score": [
+        2,
+        1
+      ],
+      "pens": null,
+      "winner": "USA"
+    },
+    "82": {
+      "round": "R32",
+      "home": "BEL",
+      "away": "RSA",
+      "score": [
+        2,
+        1
+      ],
+      "pens": null,
+      "winner": "BEL"
+    },
+    "83": {
+      "round": "R32",
+      "home": "COL",
+      "away": "ENG",
+      "score": [
+        1,
+        3
+      ],
+      "pens": null,
+      "winner": "ENG"
+    },
+    "84": {
+      "round": "R32",
+      "home": "ESP",
+      "away": "AUT",
+      "score": [
+        3,
+        1
+      ],
+      "pens": null,
+      "winner": "ESP"
+    },
+    "85": {
+      "round": "R32",
+      "home": "SUI",
+      "away": "EGY",
+      "score": [
+        3,
+        1
+      ],
+      "pens": null,
+      "winner": "SUI"
+    },
+    "86": {
+      "round": "R32",
+      "home": "ARG",
+      "away": "CPV",
+      "score": [
+        4,
+        2
+      ],
+      "pens": null,
+      "winner": "ARG"
+    },
+    "87": {
+      "round": "R32",
+      "home": "POR",
+      "away": "TUR",
+      "score": [
+        4,
+        2
+      ],
+      "pens": null,
+      "winner": "POR"
+    },
+    "88": {
+      "round": "R32",
+      "home": "AUS",
+      "away": "IRN",
+      "score": [
+        5,
+        4
+      ],
+      "pens": null,
+      "winner": "AUS"
+    },
+    "89": {
+      "round": "R16",
+      "home": "GER",
+      "away": "FRA",
+      "score": [
+        4,
+        3
+      ],
+      "pens": null,
+      "winner": "GER"
+    },
+    "90": {
+      "round": "R16",
+      "home": "CZE",
+      "away": "SWE",
+      "score": [
+        3,
+        4
+      ],
+      "pens": null,
+      "winner": "SWE"
+    },
+    "91": {
+      "round": "R16",
+      "home": "BRA",
+      "away": "NOR",
+      "score": [
+        3,
+        1
+      ],
+      "pens": null,
+      "winner": "BRA"
+    },
+    "92": {
+      "round": "R16",
+      "home": "MEX",
+      "away": "CRO",
+      "score": [
+        2,
+        4
+      ],
+      "pens": null,
+      "winner": "CRO"
+    },
+    "93": {
+      "round": "R16",
+      "home": "ENG",
+      "away": "ESP",
+      "score": [
+        2,
+        4
+      ],
+      "pens": null,
+      "winner": "ESP"
+    },
+    "94": {
+      "round": "R16",
+      "home": "USA",
+      "away": "BEL",
+      "score": [
+        2,
+        3
+      ],
+      "pens": null,
+      "winner": "BEL"
+    },
+    "95": {
+      "round": "R16",
+      "home": "ARG",
+      "away": "AUS",
+      "score": [
+        2,
+        1
+      ],
+      "pens": null,
+      "winner": "ARG"
+    },
+    "96": {
+      "round": "R16",
+      "home": "SUI",
+      "away": "POR",
+      "score": [
+        2,
+        4
+      ],
+      "pens": null,
+      "winner": "POR"
+    },
+    "97": {
+      "round": "QF",
+      "home": "GER",
+      "away": "SWE",
+      "score": [
+        4,
+        1
+      ],
+      "pens": null,
+      "winner": "GER"
+    },
+    "98": {
+      "round": "QF",
+      "home": "ESP",
+      "away": "BEL",
+      "score": [
+        3,
+        1
+      ],
+      "pens": null,
+      "winner": "ESP"
+    },
+    "99": {
+      "round": "QF",
+      "home": "BRA",
+      "away": "CRO",
+      "score": [
+        3,
+        2
+      ],
+      "pens": null,
+      "winner": "BRA"
+    },
+    "100": {
+      "round": "QF",
+      "home": "ARG",
+      "away": "POR",
+      "score": [
+        2,
+        4
+      ],
+      "pens": null,
+      "winner": "POR"
+    },
+    "101": {
+      "round": "SF",
+      "home": "GER",
+      "away": "ESP",
+      "score": [
+        3,
+        2
+      ],
+      "pens": null,
+      "winner": "GER"
+    },
+    "102": {
+      "round": "SF",
+      "home": "BRA",
+      "away": "POR",
+      "score": [
+        3,
+        1
+      ],
+      "pens": null,
+      "winner": "BRA"
+    },
+    "103": {
+      "round": "3P",
+      "home": "ESP",
+      "away": "POR",
+      "score": [
+        4,
+        2
+      ],
+      "pens": null,
+      "winner": "ESP"
+    },
+    "104": {
+      "round": "F",
+      "home": "GER",
+      "away": "BRA",
+      "score": [
+        4,
+        2
+      ],
+      "pens": null,
+      "winner": "GER"
+    }
+  },
+  "champion": "GER"
+}
