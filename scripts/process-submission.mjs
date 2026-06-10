@@ -8,7 +8,11 @@ const tournament = JSON.parse(readFileSync(new URL("../data/tournament.json", im
 
 const body = process.env.ISSUE_BODY ?? "";
 const author = process.env.ISSUE_AUTHOR ?? "";
-const eventTime = process.env.ISSUE_UPDATED_AT || process.env.ISSUE_CREATED_AT || new Date().toISOString();
+// The deadline applies to when the bracket was submitted/edited — not to
+// when the organizer gets around to approving it (a "labeled" event).
+const eventTime = (process.env.EVENT_ACTION === "edited" && process.env.ISSUE_UPDATED_AT)
+  || process.env.ISSUE_CREATED_AT
+  || new Date().toISOString();
 const labels = (process.env.ISSUE_LABELS ?? "").split(",");
 
 function output(status, message) {
@@ -54,6 +58,17 @@ try {
     output("error",
       "Your bracket didn't validate:\n\n" + v.errors.slice(0, 15).map((e) => `- ${e}`).join("\n") +
       "\n\nGo back to the site, finish your picks, and submit again.");
+    process.exit(0);
+  }
+
+  // Valid but not yet approved: hold it in the queue. The organizer adds the
+  // "approved" label to accept (their own submissions are pre-approved).
+  if (process.env.APPROVED !== "true") {
+    output("pending",
+      `✅ Your bracket is valid — **${decoded.name}**, nice picks!\n\n` +
+      `⏳ It's now waiting for the pool organizer to approve it (this pool is invite-only). ` +
+      `You'll get a confirmation comment here once it's saved. ` +
+      `You can still edit your submission before kickoff — just resubmit from the site.`);
     process.exit(0);
   }
 

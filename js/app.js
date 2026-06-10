@@ -401,7 +401,8 @@ function onSubmit() {
      <ol>
        <li>Click the button below — it opens a pre-filled GitHub issue (you'll need a free GitHub account).</li>
        <li>Don't edit anything — just press <strong>Create</strong> on GitHub.</li>
-       <li>A robot will check your bracket, save it to the repo, and close the issue within a minute or two.</li>
+       <li>A robot checks your bracket right away; once the organizer approves it, you'll get a
+           confirmation comment and you're on the leaderboard.</li>
      </ol>
      <p><a class="button-primary" href="${issueUrl}" target="_blank" rel="noopener">Open GitHub submission →</a></p>
      <p>No GitHub account? <button class="ghost" id="modal-download">Download your bracket file</button>

@@ -2,7 +2,7 @@ name: Process bracket submission
 
 on:
   issues:
-    types: [opened, edited, reopened]
+    types: [opened, edited, reopened, labeled]
 
 permissions:
   contents: write
@@ -18,9 +18,11 @@ jobs:
     # Gate on body content rather than labels: template labels are only
     # auto-applied when they already exist in the repo, so a fresh repo would
     # silently skip every submission if we required the label.
+    # For label events, only react to the organizer adding "approved".
     if: >-
-      contains(github.event.issue.body, '### Bracket payload') ||
-      contains(github.event.issue.labels.*.name, 'bracket-submission')
+      (contains(github.event.issue.body, '### Bracket payload') ||
+       contains(github.event.issue.labels.*.name, 'bracket-submission')) &&
+      (github.event.action != 'labeled' || github.event.label.name == 'approved')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -38,7 +40,11 @@ jobs:
           ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
           ISSUE_CREATED_AT: ${{ github.event.issue.created_at }}
           ISSUE_UPDATED_AT: ${{ github.event.issue.updated_at }}
+          EVENT_ACTION: ${{ github.event.action }}
           ISSUE_LABELS: ${{ join(github.event.issue.labels.*.name, ',') }}
+          # Brackets only get committed once the organizer adds the
+          # "approved" label; the organizer's own submissions skip the queue.
+          APPROVED: ${{ contains(github.event.issue.labels.*.name, 'approved') || contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.issue.author_association) }}
         run: node scripts/process-submission.mjs
 
       - name: Commit prediction
