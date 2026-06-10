@@ -31,9 +31,17 @@ services.
 1. Fill in every score on the site (it autosaves in the browser).
 2. Click **Submit bracket** → opens a pre-filled GitHub issue (needs a free
    GitHub account) → press **Create**.
-3. The `Process bracket submission` workflow validates it, commits
+3. The `Process bracket submission` workflow validates it immediately and
+   comments. The bracket is held until **the organizer adds the `approved`
+   label** to the issue (the pool is invite-only; your own submissions are
+   pre-approved). On approval the bot commits
    `data/predictions/<github-username>.json`, comments, and closes the issue.
    Resubmitting before the lock simply replaces the previous bracket.
+
+The deadline applies to when the bracket was submitted or last edited, so
+approving after kickoff is safe. The site is also marked `noindex` (plus
+`robots.txt`) so it won't show up in search engines — but it is still
+technically public, so tell people to use first names or nicknames.
 
 **No GitHub account?** They click **Download file** instead and send you the
 file. You import it with:
