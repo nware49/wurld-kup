@@ -14,7 +14,12 @@ concurrency:
 
 jobs:
   process:
-    if: contains(github.event.issue.labels.*.name, 'bracket-submission')
+    # Gate on body content rather than labels: template labels are only
+    # auto-applied when they already exist in the repo, so a fresh repo would
+    # silently skip every submission if we required the label.
+    if: >-
+      contains(github.event.issue.body, '### Bracket payload') ||
+      contains(github.event.issue.labels.*.name, 'bracket-submission')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

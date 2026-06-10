@@ -14,8 +14,11 @@ concurrency:
 
 jobs:
   process:
+    # Body-content gate (labels only auto-apply once they exist in the repo);
+    # restricted to the organizer via author_association.
     if: >-
-      contains(github.event.issue.labels.*.name, 'results-update') &&
+      (contains(github.event.issue.body, '### Results JSON') ||
+       contains(github.event.issue.labels.*.name, 'results-update')) &&
       contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.issue.author_association)
     runs-on: ubuntu-latest
     steps:
