@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rules — Wurld Kup '26</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚽</text></svg>">
+</head>
+<body>
+  <header class="site">
+    <h1><span class="ball">⚽</span>Wurld Kup '26</h1>
+    <nav>
+      <a href="index.html">Predict</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="rules.html" class="active">Rules</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2 class="section">How it works</h2>
+    <div class="rules-box">
+      <p>You predict the score of every one of the 104 matches <strong>before the tournament starts</strong>.
+      Your group-stage scores determine your group standings (FIFA tiebreakers: points, goal difference,
+      goals scored, head-to-head). The top two from each group plus the eight best third-placed teams fill
+      your knockout bracket exactly the way the real one is built, and you keep predicting scores all the
+      way to the final.</p>
+      <p>For knockout matches you predict the score at the end of play (extra time included). If you predict
+      a draw, you pick who goes through on penalties.</p>
+    </div>
+
+    <h2 class="section">Scoring a match</h2>
+    <div class="rules-box">
+      <p>Every match has a base value <strong>P</strong>. You earn:</p>
+      <table>
+        <tr><th>What you got right</th><th>Points</th></tr>
+        <tr><td>Correct outcome (winner, or a draw in groups; in knockouts: the team you advanced went through)</td><td>P</td></tr>
+        <tr><td>…plus a score-accuracy bonus (best one applies):</td><td></td></tr>
+        <tr><td>Exact score on both sides</td><td>+P (a perfect pick = <strong>2×P</strong> total)</td></tr>
+        <tr><td>Exact score on one side, or within ±1 on both sides</td><td>+P/2</td></tr>
+        <tr><td>Within ±1 on one side</td><td>+P/4</td></tr>
+      </table>
+      <p>The outcome point and the score bonus are independent — you can bank score points even if you called
+      the winner wrong, and vice versa.</p>
+    </div>
+
+    <h2 class="section">Match values by round</h2>
+    <div class="rules-box">
+      <p>Base value P = <strong>4 points</strong> in the group stage and doubles every round:</p>
+      <table>
+        <tr><th>Round</th><th>P</th><th>Perfect pick</th></tr>
+        <tr><td>Group stage (72 matches)</td><td>4</td><td>8</td></tr>
+        <tr><td>Round of 32</td><td>8</td><td>16</td></tr>
+        <tr><td>Round of 16</td><td>16</td><td>32</td></tr>
+        <tr><td>Quarter-finals</td><td>32</td><td>64</td></tr>
+        <tr><td>Semi-finals &amp; third-place match</td><td>64</td><td>128</td></tr>
+        <tr><td>Final</td><td>128</td><td>256</td></tr>
+      </table>
+      <p>A flawless bracket scores <strong>1,984 points</strong>. Nobody will get a flawless bracket.</p>
+    </div>
+
+    <h2 class="section">Knockout fine print</h2>
+    <div class="rules-box">
+      <ul>
+        <li>Knockout matches are scored slot-by-slot against the real bracket (match 73, match 74, …).</li>
+        <li><strong>Outcome point:</strong> you get it if the team you advanced from that slot actually advanced
+            from it — even if their real opponent wasn't the one in your bracket.</li>
+        <li><strong>Score bonuses:</strong> a side only counts if you had that exact team in that slot; then
+            their predicted goals are compared with their real goals.</li>
+        <li>Third-place teams are slotted into the bracket with the same allowed-group constraints FIFA uses.
+            In rare edge cases FIFA's official allocation may differ from ours — the same rule applies to
+            everyone, so it stays fair.</li>
+      </ul>
+    </div>
+
+    <h2 class="section">Submitting</h2>
+    <div class="rules-box">
+      <ul>
+        <li>Brackets lock at kickoff of the opening match.</li>
+        <li>Submit through GitHub (free account) — your bracket is saved into the repo automatically and
+            shows up on the leaderboard.</li>
+        <li>You can resubmit as often as you like before the lock; only your latest bracket counts.</li>
+        <li>No GitHub account? Download your bracket file and send it to the organizer.</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="site">Self-hosted bracket pool</footer>
+</body>
+</html>
