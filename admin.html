@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Results admin — Wurld Kup '26</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚽</text></svg>">
+</head>
+<body>
+  <header class="site">
+    <h1><span class="ball">⚽</span>Wurld Kup '26 — Results admin</h1>
+    <nav>
+      <a href="index.html">Predict</a>
+      <a href="leaderboard.html">Leaderboard</a>
+    </nav>
+  </header>
+
+  <main>
+    <p class="intro">Organizer page: enter the <strong>real</strong> results as matches finish, then publish.
+    It loads whatever is already in <code>data/results.json</code>, so you only ever fill in what's new.
+    Leave unplayed matches blank.</p>
+
+    <h2 class="section">Group stage results</h2>
+    <div class="groups-grid" id="groups-grid"></div>
+
+    <h2 class="section">Knockout results</h2>
+    <p class="intro">Once all of a group's results are in, team dropdowns pre-fill from the real standings —
+    double-check them against the official bracket (FIFA's third-place allocation can differ). Knockout scores
+    are after extra time; pick the shootout winner for draws.</p>
+    <div id="ko-list"></div>
+
+    <h2 class="section">Publish</h2>
+    <div class="rules-box">
+      <p>
+        <button class="primary" id="btn-issue">Publish via GitHub issue</button>
+        <button class="ghost" id="btn-copy">Copy results.json</button>
+        <span id="copy-status"></span>
+      </p>
+      <p>The issue route only works for the repo owner/collaborators — a workflow validates and commits the
+      update automatically. Alternatively, copy the JSON and paste it into
+      <a id="edit-link" href="#">data/results.json on GitHub</a> directly.</p>
+      <textarea id="json-out" style="width:100%;height:10rem;background:var(--bg-soft);color:var(--muted);border:1px solid var(--card-edge);border-radius:6px;font-family:monospace;font-size:0.75rem" readonly></textarea>
+    </div>
+  </main>
+
+  <footer class="site">Self-hosted bracket pool</footer>
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

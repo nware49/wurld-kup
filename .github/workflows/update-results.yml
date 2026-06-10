@@ -1,0 +1,75 @@
+name: Process results update
+
+on:
+  issues:
+    types: [opened, edited, reopened]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: repo-data-writes
+  cancel-in-progress: false
+
+jobs:
+  process:
+    if: >-
+      contains(github.event.issue.labels.*.name, 'results-update') &&
+      contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.issue.author_association)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Validate and store results
+        id: process
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: node scripts/process-results.mjs
+
+      - name: Commit results
+        if: steps.process.outputs.status == 'ok'
+        run: |
+          git config user.name "bracket-bot"
+          git config user.email "actions@github.com"
+          git add data/results.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Update match results (#${{ github.event.issue.number }})"
+          for i in 1 2 3 4; do
+            git push origin main && exit 0
+            git pull --rebase origin main
+            sleep $((2 ** i))
+          done
+          git push origin main
+
+      - name: Reply and close
+        uses: actions/github-script@v7
+        if: always() && steps.process.outputs.status != ''
+        env:
+          MESSAGE: ${{ steps.process.outputs.message }}
+          STATUS: ${{ steps.process.outputs.status }}
+        with:
+          script: |
+            const ok = process.env.STATUS === 'ok';
+            await github.rest.issues.createComment({
+              ...context.repo,
+              issue_number: context.issue.number,
+              body: process.env.MESSAGE,
+            });
+            if (ok) {
+              await github.rest.issues.update({
+                ...context.repo,
+                issue_number: context.issue.number,
+                state: 'closed',
+                state_reason: 'completed',
+              });
+            }

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wurld Kup '26 — Bracket Predictions</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚽</text></svg>">
+</head>
+<body>
+  <header class="site">
+    <h1><span class="ball">⚽</span>Wurld Kup '26</h1>
+    <nav>
+      <a href="index.html" class="active">Predict</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="rules.html">Rules</a>
+    </nav>
+    <div id="lock-banner"></div>
+  </header>
+
+  <main>
+    <div id="view-banner"></div>
+    <p class="intro">
+      Predict the score of all <strong>104 matches</strong> of the 2026 World Cup.
+      Your group-stage scores decide who tops each group and which third-place teams
+      sneak through — the knockout bracket below fills in automatically as you go.
+      Your work is saved in this browser as you type.
+    </p>
+
+    <div class="field-row">
+      <label for="display-name">Your name</label>
+      <input type="text" id="display-name" maxlength="40" placeholder="e.g. Uncle Rico">
+    </div>
+
+    <h2 class="section">1 · Group stage</h2>
+    <div class="groups-grid" id="groups-grid"></div>
+
+    <h2 class="section">2 · Best third-placed teams</h2>
+    <div id="thirds-panel">Fill in all group-stage scores to see which third-placed teams advance.</div>
+
+    <h2 class="section">3 · Knockout rounds</h2>
+    <div class="bracket-scroll">
+      <div class="bracket" id="bracket"></div>
+    </div>
+    <div class="champ-banner" id="champ-banner"></div>
+  </main>
+
+  <div class="submit-bar" id="submit-bar">
+    <span class="progress" id="progress"></span>
+    <button class="primary" id="btn-submit">Submit bracket</button>
+    <button class="ghost" id="btn-download">Download file</button>
+    <button class="ghost" id="btn-random">Fill remaining randomly</button>
+    <button class="ghost" id="btn-clear">Clear all</button>
+  </div>
+
+  <div id="modal-root"></div>
+
+  <footer class="site">
+    Self-hosted bracket pool · scores live in the
+    <a id="repo-link" href="#">GitHub repo</a>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

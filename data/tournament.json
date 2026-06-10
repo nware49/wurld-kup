@@ -1,0 +1,116 @@
+{
+  "name": "FIFA World Cup 2026",
+  "lockTime": "2026-06-11T19:00:00-04:00",
+  "scoring": {
+    "base": 4,
+    "multipliers": { "GROUP": 1, "R32": 2, "R16": 4, "QF": 8, "SF": 16, "3P": 16, "F": 32 }
+  },
+  "groups": {
+    "A": [
+      { "code": "MEX", "name": "Mexico", "flag": "🇲🇽" },
+      { "code": "RSA", "name": "South Africa", "flag": "🇿🇦" },
+      { "code": "KOR", "name": "South Korea", "flag": "🇰🇷" },
+      { "code": "CZE", "name": "Czechia", "flag": "🇨🇿" }
+    ],
+    "B": [
+      { "code": "CAN", "name": "Canada", "flag": "🇨🇦" },
+      { "code": "SUI", "name": "Switzerland", "flag": "🇨🇭" },
+      { "code": "QAT", "name": "Qatar", "flag": "🇶🇦" },
+      { "code": "BIH", "name": "Bosnia-Herzegovina", "flag": "🇧🇦" }
+    ],
+    "C": [
+      { "code": "BRA", "name": "Brazil", "flag": "🇧🇷" },
+      { "code": "MAR", "name": "Morocco", "flag": "🇲🇦" },
+      { "code": "SCO", "name": "Scotland", "flag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿" },
+      { "code": "HAI", "name": "Haiti", "flag": "🇭🇹" }
+    ],
+    "D": [
+      { "code": "USA", "name": "United States", "flag": "🇺🇸" },
+      { "code": "TUR", "name": "Türkiye", "flag": "🇹🇷" },
+      { "code": "AUS", "name": "Australia", "flag": "🇦🇺" },
+      { "code": "PAR", "name": "Paraguay", "flag": "🇵🇾" }
+    ],
+    "E": [
+      { "code": "GER", "name": "Germany", "flag": "🇩🇪" },
+      { "code": "ECU", "name": "Ecuador", "flag": "🇪🇨" },
+      { "code": "CIV", "name": "Ivory Coast", "flag": "🇨🇮" },
+      { "code": "CUW", "name": "Curaçao", "flag": "🇨🇼" }
+    ],
+    "F": [
+      { "code": "NED", "name": "Netherlands", "flag": "🇳🇱" },
+      { "code": "JPN", "name": "Japan", "flag": "🇯🇵" },
+      { "code": "SWE", "name": "Sweden", "flag": "🇸🇪" },
+      { "code": "TUN", "name": "Tunisia", "flag": "🇹🇳" }
+    ],
+    "G": [
+      { "code": "BEL", "name": "Belgium", "flag": "🇧🇪" },
+      { "code": "IRN", "name": "Iran", "flag": "🇮🇷" },
+      { "code": "EGY", "name": "Egypt", "flag": "🇪🇬" },
+      { "code": "NZL", "name": "New Zealand", "flag": "🇳🇿" }
+    ],
+    "H": [
+      { "code": "ESP", "name": "Spain", "flag": "🇪🇸" },
+      { "code": "URU", "name": "Uruguay", "flag": "🇺🇾" },
+      { "code": "KSA", "name": "Saudi Arabia", "flag": "🇸🇦" },
+      { "code": "CPV", "name": "Cape Verde", "flag": "🇨🇻" }
+    ],
+    "I": [
+      { "code": "FRA", "name": "France", "flag": "🇫🇷" },
+      { "code": "SEN", "name": "Senegal", "flag": "🇸🇳" },
+      { "code": "NOR", "name": "Norway", "flag": "🇳🇴" },
+      { "code": "IRQ", "name": "Iraq", "flag": "🇮🇶" }
+    ],
+    "J": [
+      { "code": "ARG", "name": "Argentina", "flag": "🇦🇷" },
+      { "code": "AUT", "name": "Austria", "flag": "🇦🇹" },
+      { "code": "ALG", "name": "Algeria", "flag": "🇩🇿" },
+      { "code": "JOR", "name": "Jordan", "flag": "🇯🇴" }
+    ],
+    "K": [
+      { "code": "POR", "name": "Portugal", "flag": "🇵🇹" },
+      { "code": "COL", "name": "Colombia", "flag": "🇨🇴" },
+      { "code": "UZB", "name": "Uzbekistan", "flag": "🇺🇿" },
+      { "code": "COD", "name": "DR Congo", "flag": "🇨🇩" }
+    ],
+    "L": [
+      { "code": "ENG", "name": "England", "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿" },
+      { "code": "CRO", "name": "Croatia", "flag": "🇭🇷" },
+      { "code": "GHA", "name": "Ghana", "flag": "🇬🇭" },
+      { "code": "PAN", "name": "Panama", "flag": "🇵🇦" }
+    ]
+  },
+  "knockout": [
+    { "m": 73, "r": "R32", "h": { "t": "RU", "g": "A" }, "a": { "t": "RU", "g": "B" } },
+    { "m": 74, "r": "R32", "h": { "t": "W", "g": "E" }, "a": { "t": "3", "o": ["A", "B", "C", "D", "F"] } },
+    { "m": 75, "r": "R32", "h": { "t": "W", "g": "F" }, "a": { "t": "RU", "g": "C" } },
+    { "m": 76, "r": "R32", "h": { "t": "W", "g": "C" }, "a": { "t": "RU", "g": "F" } },
+    { "m": 77, "r": "R32", "h": { "t": "W", "g": "I" }, "a": { "t": "3", "o": ["C", "D", "F", "G", "H"] } },
+    { "m": 78, "r": "R32", "h": { "t": "RU", "g": "E" }, "a": { "t": "RU", "g": "I" } },
+    { "m": 79, "r": "R32", "h": { "t": "W", "g": "A" }, "a": { "t": "3", "o": ["C", "E", "F", "H", "I"] } },
+    { "m": 80, "r": "R32", "h": { "t": "W", "g": "L" }, "a": { "t": "3", "o": ["E", "H", "I", "J", "K"] } },
+    { "m": 81, "r": "R32", "h": { "t": "W", "g": "D" }, "a": { "t": "3", "o": ["B", "E", "F", "I", "J"] } },
+    { "m": 82, "r": "R32", "h": { "t": "W", "g": "G" }, "a": { "t": "3", "o": ["A", "E", "H", "I", "J"] } },
+    { "m": 83, "r": "R32", "h": { "t": "RU", "g": "K" }, "a": { "t": "RU", "g": "L" } },
+    { "m": 84, "r": "R32", "h": { "t": "W", "g": "H" }, "a": { "t": "RU", "g": "J" } },
+    { "m": 85, "r": "R32", "h": { "t": "W", "g": "B" }, "a": { "t": "3", "o": ["E", "F", "G", "I", "J"] } },
+    { "m": 86, "r": "R32", "h": { "t": "W", "g": "J" }, "a": { "t": "RU", "g": "H" } },
+    { "m": 87, "r": "R32", "h": { "t": "W", "g": "K" }, "a": { "t": "3", "o": ["D", "E", "I", "J", "L"] } },
+    { "m": 88, "r": "R32", "h": { "t": "RU", "g": "D" }, "a": { "t": "RU", "g": "G" } },
+    { "m": 89, "r": "R16", "h": { "t": "WM", "m": 74 }, "a": { "t": "WM", "m": 77 } },
+    { "m": 90, "r": "R16", "h": { "t": "WM", "m": 73 }, "a": { "t": "WM", "m": 75 } },
+    { "m": 91, "r": "R16", "h": { "t": "WM", "m": 76 }, "a": { "t": "WM", "m": 78 } },
+    { "m": 92, "r": "R16", "h": { "t": "WM", "m": 79 }, "a": { "t": "WM", "m": 80 } },
+    { "m": 93, "r": "R16", "h": { "t": "WM", "m": 83 }, "a": { "t": "WM", "m": 84 } },
+    { "m": 94, "r": "R16", "h": { "t": "WM", "m": 81 }, "a": { "t": "WM", "m": 82 } },
+    { "m": 95, "r": "R16", "h": { "t": "WM", "m": 86 }, "a": { "t": "WM", "m": 88 } },
+    { "m": 96, "r": "R16", "h": { "t": "WM", "m": 85 }, "a": { "t": "WM", "m": 87 } },
+    { "m": 97, "r": "QF", "h": { "t": "WM", "m": 89 }, "a": { "t": "WM", "m": 90 } },
+    { "m": 98, "r": "QF", "h": { "t": "WM", "m": 93 }, "a": { "t": "WM", "m": 94 } },
+    { "m": 99, "r": "QF", "h": { "t": "WM", "m": 91 }, "a": { "t": "WM", "m": 92 } },
+    { "m": 100, "r": "QF", "h": { "t": "WM", "m": 95 }, "a": { "t": "WM", "m": 96 } },
+    { "m": 101, "r": "SF", "h": { "t": "WM", "m": 97 }, "a": { "t": "WM", "m": 98 } },
+    { "m": 102, "r": "SF", "h": { "t": "WM", "m": 99 }, "a": { "t": "WM", "m": 100 } },
+    { "m": 103, "r": "3P", "h": { "t": "LM", "m": 101 }, "a": { "t": "LM", "m": 102 } },
+    { "m": 104, "r": "F", "h": { "t": "WM", "m": 101 }, "a": { "t": "WM", "m": 102 } }
+  ]
+}
