@@ -104,6 +104,96 @@ check(scoreGroupMatch(sc, [2, 1], [1, 2]) === 2, "wrong winner, close both = bas
 check(scoreGroupMatch(sc, [0, 0], [1, 1]) === 6, "draw pick + close both = base + base/2");
 check(scoreGroupMatch(sc, [3, 0], [0, 3]) === 0, "everything wrong = 0");
 
+// ---------------------------------------------------------------------------
+// Auto-fetch mapping/merging (scripts/fetch-results.mjs)
+import { buildTeamLookup, teamCode, extractScore, applyFixtures } from "./fetch-results.mjs";
+
+const eqJ = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+const lookup = buildTeamLookup(tournament);
+const T = (tla, name) => ({ tla, name });
+check(teamCode(lookup, T("GER", "Germany")) === "GER", "team lookup by TLA");
+check(teamCode(lookup, T("XXX", "Côte d'Ivoire")) === "CIV", "team lookup: accented alias");
+check(teamCode(lookup, T(null, "Czech Republic")) === "CZE", "team lookup: Czech Republic");
+check(teamCode(lookup, T(null, "Korea Republic")) === "KOR", "team lookup: Korea Republic");
+check(teamCode(lookup, T(null, "Cabo Verde")) === "CPV", "team lookup: Cabo Verde");
+check(teamCode(lookup, T(null, "Türkiye")) === "TUR", "team lookup: Türkiye");
+check(teamCode(lookup, T(null, "Atlantis")) === null, "team lookup: unknown -> null");
+
+check(eqJ(extractScore({ duration: "REGULAR", fullTime: { home: 2, away: 1 } }),
+  { score: [2, 1], pens: null }), "extract: regular time");
+check(eqJ(extractScore({ duration: "EXTRA_TIME", fullTime: { home: 3, away: 2 } }),
+  { score: [3, 2], pens: null }), "extract: extra time");
+check(eqJ(extractScore({ duration: "PENALTY_SHOOTOUT", winner: "AWAY_TEAM",
+  fullTime: { home: 1, away: 1 }, penalties: { home: 3, away: 4 } }),
+  { score: [1, 1], pens: 2 }), "extract: shootout, fullTime = AET");
+check(eqJ(extractScore({ duration: "PENALTY_SHOOTOUT", winner: "HOME_TEAM",
+  fullTime: { home: 5, away: 4 }, regularTime: { home: 1, away: 1 },
+  extraTime: { home: 0, away: 0 }, penalties: { home: 4, away: 3 } }),
+  { score: [1, 1], pens: 1 }), "extract: shootout, fullTime includes pens");
+check(eqJ(extractScore({ duration: "PENALTY_SHOOTOUT", winner: "HOME_TEAM",
+  fullTime: { home: 4, away: 2 }, penalties: { home: 3, away: 1 } }),
+  { score: [1, 1], pens: 1 }), "extract: shootout, AET reconstructed from pens");
+
+const fxG = (h, a, hg, ag) => ({ status: "FINISHED", stage: "GROUP_STAGE",
+  homeTeam: { tla: h }, awayTeam: { tla: a },
+  score: { duration: "REGULAR", fullTime: { home: hg, away: ag } } });
+const emptyResults = { groups: {}, knockout: {} };
+{
+  // Group A is MEX, RSA, KOR, CZE: KOR v MEX is PAIR_ORDER slot 2 ([0, 2]),
+  // stored MEX-first, so the API's 1-2 lands as [2, 1].
+  const r1 = applyFixtures(tournament, emptyResults, emptyResults, [fxG("KOR", "MEX", 1, 2)]);
+  check(eqJ(r1.results.groups.A?.[2], [2, 1]), "group fixture oriented into PAIR_ORDER slot");
+  check(eqJ(r1.auto.groups.A?.[2], [2, 1]), "auto snapshot records the API value");
+  check(r1.warnings.length === 0, "clean group fixture maps without warnings");
+
+  // Entry differing from the last auto snapshot = manual override, preserved.
+  const curOv = { groups: { A: [null, null, [5, 5], null, null, null] }, knockout: {} };
+  const r2 = applyFixtures(tournament, curOv, r1.auto, [fxG("KOR", "MEX", 1, 2)]);
+  check(eqJ(r2.results.groups.A[2], [5, 5]), "manual group override preserved");
+
+  // Entry equal to the last auto snapshot = auto-owned, corrections flow through.
+  const curAuto = { groups: { A: [null, null, [2, 1], null, null, null] }, knockout: {} };
+  const r3 = applyFixtures(tournament, curAuto, r1.auto, [fxG("KOR", "MEX", 1, 3)]);
+  check(eqJ(r3.results.groups.A[2], [3, 1]), "auto-owned entry updated by API correction");
+}
+
+{
+  // Knockout assignment from real standings, including an R16 fixture that
+  // depends on R32 winners recorded in the same batch.
+  const { groups } = randomBracket(mulberry32(7));
+  const tables = computeAllTables(tournament, groups);
+  const cur = { groups, knockout: {} };
+  const prevAuto = { groups, knockout: {} };
+  const ruA = tables.A[1].code, ruB = tables.B[1].code;
+  const wF = tables.F[0].code, ruC = tables.C[1].code;
+  const fxKO = (stage, h, a, hg, ag, pens) => ({ status: "FINISHED", stage,
+    homeTeam: { tla: h }, awayTeam: { tla: a },
+    score: pens
+      ? { duration: "PENALTY_SHOOTOUT", winner: pens === 1 ? "HOME_TEAM" : "AWAY_TEAM",
+          fullTime: { home: hg, away: ag },
+          penalties: pens === 1 ? { home: 4, away: 3 } : { home: 3, away: 4 } }
+      : { duration: "REGULAR", fullTime: { home: hg, away: ag } } });
+  const batch = [
+    fxKO("LAST_32", ruA, ruB, 1, 1, 2),   // m73 (RU A v RU B), ruB on pens
+    fxKO("LAST_32", ruC, wF, 0, 2, null), // m75 (W F v RU C), API order swapped
+    fxKO("LAST_16", ruB, wF, 1, 0, null), // m90 = WM73 v WM75, same batch
+  ];
+  const r = applyFixtures(tournament, cur, prevAuto, batch);
+  check(eqJ(r.results.knockout["73"], { home: ruA, away: ruB, score: [1, 1], pens: 2 }),
+    "R32 fixture assigned via group anchors (m73)");
+  check(eqJ(r.results.knockout["75"], { home: ruC, away: wF, score: [0, 2], pens: null }),
+    "R32 assignment ignores home/away order (m75)");
+  check(eqJ(r.results.knockout["90"], { home: ruB, away: wF, score: [1, 0], pens: null }),
+    "R16 resolves from same-batch R32 winners (m90)");
+  check(r.warnings.length === 0, "knockout batch maps without warnings");
+
+  // Organizer-corrected knockout entry survives the next fetch.
+  const curKoOv = { groups, knockout: { 73: { home: ruA, away: ruB, score: [2, 1], pens: null } } };
+  const r2 = applyFixtures(tournament, curKoOv, { groups, knockout: r.auto.knockout }, batch.slice(0, 2));
+  check(eqJ(r2.results.knockout["73"], { home: ruA, away: ruB, score: [2, 1], pens: null }),
+    "manual knockout override preserved");
+}
+
 if (failures) {
   console.error(`\n${failures} check(s) failed`);
   process.exit(1);

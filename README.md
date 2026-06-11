@@ -25,6 +25,9 @@ services.
 6. Sanity-check `data/tournament.json`: team list and the `lockTime`
    (currently set to the opening kickoff, `2026-06-11T19:00:00-04:00` —
    adjust if the real kickoff time differs).
+7. *(Optional but recommended)* Add the `FOOTBALL_DATA_TOKEN` secret so
+   results fill in automatically — see
+   [Automatic results](#automatic-results-via-football-dataorg-optional).
 
 ## How friends submit
 
@@ -57,6 +60,11 @@ edit it (any edit re-triggers processing).
 
 ## Entering real results
 
+Results fill themselves in automatically if you set up the free
+football-data.org API (next section). Anything you enter manually always
+beats the auto-updater, so the manual paths below double as the override
+mechanism — use them whenever the feed is wrong, late, or missing.
+
 Open `admin.html` on the site. Enter scores as matches finish (knockout
 scores are after extra time, with a penalties winner for draws — knockout
 team dropdowns pre-fill from the real group standings as they complete).
@@ -68,6 +76,29 @@ Then either:
 
 The leaderboard updates as soon as Pages redeploys (automatic on every push
 to `main`).
+
+### Automatic results via football-data.org (optional)
+
+1. Register a free account at <https://www.football-data.org/client/register>
+   — the free tier includes the World Cup (the workflow uses one API request
+   per run, well under the 10/minute limit).
+2. Put your API token in a repo secret named `FOOTBALL_DATA_TOKEN`
+   (Settings → Secrets and variables → Actions → New repository secret).
+3. Done. The **Fetch live results** workflow polls every 30 minutes during
+   the tournament window (June 11 – July 19; it can also be run manually from
+   the Actions tab), maps finished matches into `data/results.json`, commits,
+   and redeploys the site. Without the secret each run is a harmless no-op.
+
+How overrides work: the workflow keeps its last API snapshot in
+`data/results-auto.json`. Any entry in `data/results.json` that differs from
+that snapshot was changed by a human and is never touched again. To hand a
+match back to the auto-updater, delete the entry (or set it to the API's
+value) and let the next run refill it. Matches the feed can't place
+confidently (unknown team name, ambiguous bracket slot, unreadable extra-time
+score) are skipped with a warning in the workflow log — enter those manually.
+One caveat: reload `admin.html` right before publishing manual edits; a stale
+page republishes the older auto-scores it loaded at open, and those then
+count as manual overrides.
 
 ## Scoring
 
@@ -97,10 +128,12 @@ index.html / rules.html / leaderboard.html / admin.html   the site
 js/core.js          shared bracket + scoring logic (browser AND Node)
 js/app.js           prediction builder UI
 data/tournament.json  teams, groups, knockout template, scoring config
-data/results.json     real results (organizer-maintained)
+data/results.json     real results (auto-fetched and/or organizer-maintained)
+data/results-auto.json  last football-data.org snapshot (override detection)
 data/predictions/     one JSON per submitted bracket + index.json
 scripts/process-submission.mjs   issue → prediction file (GitHub Action)
 scripts/process-results.mjs      issue → results.json (GitHub Action)
+scripts/fetch-results.mjs        football-data.org → results.json (scheduled Action)
 scripts/import-bracket.mjs       manual import for emailed brackets
 scripts/selftest.mjs             logic self-tests (run in CI before deploy)
 .github/workflows/    submission, results, and Pages deploy automation
