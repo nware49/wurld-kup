@@ -1,4 +1,16 @@
 {
-  "groups": {},
+  "groups": {
+    "A": [
+      [
+        2,
+        0
+      ],
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
   "knockout": {}
 }
