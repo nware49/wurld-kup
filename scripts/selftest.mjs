@@ -124,6 +124,15 @@ check(scoreKnockoutMatch(sc, "R32", { home: "GER", away: "BRA", score: [2, 1], w
   A("BRA", "GER", [2, 1])) === 0, "KO wrong advancer = 0");
 check(scoreKnockoutMatch(sc, "R32", { home: "GER", away: "ARG", score: [3, 2], winner: "GER" },
   A("GER", "BRA", [2, 1])) === 8, "KO right advancer, opponent wrong = P (no score compare)");
+// Penalty shootouts: predicting the shootout winner (a draw + the right side) = 2P.
+check(scoreKnockoutMatch(sc, "R32", { home: "GER", away: "BRA", score: [1, 1], winner: "GER" },
+  A("GER", "BRA", [1, 1], 1)) === 16, "KO exact draw + right pens winner = 2P");
+check(scoreKnockoutMatch(sc, "R32", { home: "GER", away: "BRA", score: [2, 2], winner: "GER" },
+  A("GER", "BRA", [1, 1], 1)) === 16, "KO right pens winner, inexact draw = 2P");
+check(scoreKnockoutMatch(sc, "R32", { home: "GER", away: "BRA", score: [1, 1], winner: "BRA" },
+  A("GER", "BRA", [1, 1], 1)) === 0, "KO wrong pens winner = 0");
+check(scoreKnockoutMatch(sc, "R32", { home: "GER", away: "BRA", score: [2, 1], winner: "GER" },
+  A("GER", "BRA", [1, 1], 1)) === 8, "KO advanced via pens but predicted a regulation win = P");
 
 // ---------------------------------------------------------------------------
 // Auto-fetch mapping/merging (scripts/fetch-results.mjs)

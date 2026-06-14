@@ -323,7 +323,9 @@ export function expandPrediction(tournament, decoded, meta) {
 // In knockouts, "result" means the team you advanced actually advanced, even if
 // your predicted opponent was wrong. The exact-score and goal-difference
 // upgrades only apply when you placed both of the slot's real teams, so their
-// predicted and real goals can be compared.
+// predicted and real goals can be compared. When the real match goes to a
+// shootout there's no goal difference to earn, so predicting a draw and naming
+// the side that goes through earns the full P x 2 instead.
 
 export function scoreGroupMatch(scoring, pred, actual) {
   const P = scoring.base * scoring.multipliers.GROUP;
@@ -339,7 +341,11 @@ export function scoreGroupMatch(scoring, pred, actual) {
 export function scoreKnockoutMatch(scoring, round, pred, actual) {
   const P = scoring.base * scoring.multipliers[round];
   if (!pred.winner || !actual.winner || pred.winner !== actual.winner) return 0; // wrong advancer
-  // Compare goals only for teams you actually placed in this slot.
+  // A match the real teams settled on penalties is a draw in play, so there's
+  // no goal difference to earn. Calling the shootout winner — i.e. predicting a
+  // draw and naming the side that goes through — is the top tier instead.
+  if (actual.score[0] === actual.score[1] && pred.score[0] === pred.score[1]) return P * 2;
+  // Otherwise compare goals, but only for teams you actually placed in this slot.
   const predGoals = {};
   if (pred.home) predGoals[pred.home] = pred.score[0];
   if (pred.away) predGoals[pred.away] = pred.score[1];
