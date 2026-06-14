@@ -14,20 +14,6 @@
       null,
       null
     ],
-    "B": [
-      null,
-      null,
-      null,
-      null,
-      [
-        1,
-        1
-      ],
-      [
-        1,
-        1
-      ]
-    ],
     "D": [
       null,
       null,
@@ -37,14 +23,31 @@
         4,
         1
       ],
-      null
+      [
+        0,
+        2
+      ]
+    ],
+    "B": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      [
+        1,
+        1
+      ]
     ],
     "C": [
       [
         1,
         1
       ],
-      null,
+      [
+        1,
+        0
+      ],
       null,
       null,
       null,
