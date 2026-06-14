@@ -92,17 +92,38 @@ for (let trial = 0; trial < 500; trial++) {
   check(Object.values(stages).every((x) => Number.isInteger(x)), `t${trial}: integer stage points`);
 }
 
-// Spot-check scoring tiers on a single group match
-import { scoreGroupMatch } from "../js/core.js";
+// Spot-check scoring tiers on a single group match (base P = 4)
+import { scoreGroupMatch, scoreKnockoutMatch } from "../js/core.js";
 const sc = tournament.scoring;
-check(scoreGroupMatch(sc, [2, 1], [2, 1]) === 8, "exact pick = 2x base");
-check(scoreGroupMatch(sc, [2, 1], [3, 1]) === 6, "winner + exact one side = base + base/2");
-check(scoreGroupMatch(sc, [2, 1], [3, 2]) === 6, "winner + close both = base + base/2");
-check(scoreGroupMatch(sc, [2, 1], [5, 2]) === 5, "winner + close one = base + base/4");
-check(scoreGroupMatch(sc, [2, 1], [5, 3]) === 4, "winner only = base");
-check(scoreGroupMatch(sc, [2, 1], [1, 2]) === 2, "wrong winner, close both = base/2");
-check(scoreGroupMatch(sc, [0, 0], [1, 1]) === 6, "draw pick + close both = base + base/2");
+// Tiers: correct result = P(4), + goal difference (W/L) = P*1.5(6), exact = P*2(8)
+check(scoreGroupMatch(sc, [2, 1], [2, 1]) === 8, "exact score = 2P");
+check(scoreGroupMatch(sc, [2, 1], [3, 2]) === 6, "correct winner + same goal diff = 1.5P");
+check(scoreGroupMatch(sc, [1, 0], [2, 1]) === 6, "correct winner + same goal diff = 1.5P");
+check(scoreGroupMatch(sc, [2, 1], [3, 1]) === 4, "correct winner, wrong goal diff = P");
+check(scoreGroupMatch(sc, [2, 1], [5, 3]) === 4, "correct winner, wrong goal diff = P");
+check(scoreGroupMatch(sc, [2, 1], [1, 2]) === 0, "wrong winner = 0 (no score-only points)");
 check(scoreGroupMatch(sc, [3, 0], [0, 3]) === 0, "everything wrong = 0");
+// Draws: only the exact score upgrades; no goal-difference bonus for ties.
+check(scoreGroupMatch(sc, [2, 2], [3, 3]) === 4, "correct draw, not exact = P (no GD bonus)");
+check(scoreGroupMatch(sc, [2, 2], [2, 2]) === 8, "exact draw = 2P");
+check(scoreGroupMatch(sc, [0, 0], [1, 1]) === 4, "correct draw, not exact = P");
+check(scoreGroupMatch(sc, [1, 1], [2, 0]) === 0, "predicted draw, actual win = 0");
+
+// Knockout: P doubles to 8 in R32; "result" = the team you advanced advancing.
+const A = (home, away, score, pens) => {
+  const side = score[0] > score[1] ? 1 : score[1] > score[0] ? 2 : pens;
+  return { home, away, score, winner: side === 1 ? home : away };
+};
+check(scoreKnockoutMatch(sc, "R32", { home: "GER", away: "BRA", score: [2, 1], winner: "GER" },
+  A("GER", "BRA", [2, 1])) === 16, "KO exact score = 2P");
+check(scoreKnockoutMatch(sc, "R32", { home: "GER", away: "BRA", score: [3, 2], winner: "GER" },
+  A("GER", "BRA", [2, 1])) === 12, "KO correct winner + goal diff = 1.5P");
+check(scoreKnockoutMatch(sc, "R32", { home: "GER", away: "BRA", score: [4, 1], winner: "GER" },
+  A("GER", "BRA", [2, 1])) === 8, "KO correct winner, wrong goal diff = P");
+check(scoreKnockoutMatch(sc, "R32", { home: "GER", away: "BRA", score: [2, 1], winner: "GER" },
+  A("BRA", "GER", [2, 1])) === 0, "KO wrong advancer = 0");
+check(scoreKnockoutMatch(sc, "R32", { home: "GER", away: "ARG", score: [3, 2], winner: "GER" },
+  A("GER", "BRA", [2, 1])) === 8, "KO right advancer, opponent wrong = P (no score compare)");
 
 // ---------------------------------------------------------------------------
 // Auto-fetch mapping/merging (scripts/fetch-results.mjs)

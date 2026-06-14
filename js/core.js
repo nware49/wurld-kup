@@ -311,51 +311,46 @@ export function expandPrediction(tournament, decoded, meta) {
 // ---------------------------------------------------------------------------
 // Scoring
 //
-// Base points P per match (group stage), doubled each knockout round.
-//   - Correct outcome (winner, or a draw in the group stage): +P
-//   - Score accuracy bonus (best single tier applies):
-//       exact score on both sides:          +P    (so a perfect pick = 2 x P)
-//       exact on one side / within 1 both:  +P/2
-//       within 1 on one side:               +P/4
-// In knockouts, "outcome" means the team you advanced actually advanced, even
-// if your predicted opponent was wrong. Score-side comparisons only count for
-// teams you correctly placed in that bracket slot.
-
-function sideTierBonus(base, diffs) {
-  // diffs: array of per-side absolute goal differences for matched sides;
-  // bothMatched tells us whether "both sides" tiers are available.
-  const matched = diffs.filter((d) => d != null);
-  if (matched.length === 0) return 0;
-  const exact = matched.filter((d) => d === 0).length;
-  const close = matched.filter((d) => d <= 1).length;
-  if (matched.length === 2 && exact === 2) return base;
-  if (exact >= 1 || (matched.length === 2 && close === 2)) return base / 2;
-  if (close >= 1) return base / 4;
-  return 0;
-}
+// Base points P per match (group stage), doubled each knockout round. You must
+// call the result correctly to score anything; a single tier then applies:
+//   - Correct result only (win/loss/draw):            P
+//   - Correct result + correct goal difference (W/L):  P x 1.5
+//       (no goal-difference bonus when the result is a draw)
+//   - Correct result + exact score (W/L/D):            P x 2
+// The goal-difference bonus is only ever available when you picked the right
+// winning team, so a draw can only be upgraded by nailing the exact score.
+//
+// In knockouts, "result" means the team you advanced actually advanced, even if
+// your predicted opponent was wrong. The exact-score and goal-difference
+// upgrades only apply when you placed both of the slot's real teams, so their
+// predicted and real goals can be compared.
 
 export function scoreGroupMatch(scoring, pred, actual) {
-  const base = scoring.base * scoring.multipliers.GROUP;
-  let pts = 0;
+  const P = scoring.base * scoring.multipliers.GROUP;
   const po = Math.sign(pred[0] - pred[1]);
   const ao = Math.sign(actual[0] - actual[1]);
-  if (po === ao) pts += base;
-  pts += sideTierBonus(base, [Math.abs(pred[0] - actual[0]), Math.abs(pred[1] - actual[1])]);
-  return pts;
+  if (po !== ao) return 0; // wrong result — no points
+  if (pred[0] === actual[0] && pred[1] === actual[1]) return P * 2; // exact score
+  if (po !== 0 && pred[0] - pred[1] === actual[0] - actual[1]) return P * 1.5; // GD bonus (W/L only)
+  return P; // correct result only
 }
 
 // pred/actual: { home, away, score, winner } with team codes.
 export function scoreKnockoutMatch(scoring, round, pred, actual) {
-  const base = scoring.base * scoring.multipliers[round];
-  let pts = 0;
-  if (pred.winner && actual.winner && pred.winner === actual.winner) pts += base;
+  const P = scoring.base * scoring.multipliers[round];
+  if (!pred.winner || !actual.winner || pred.winner !== actual.winner) return 0; // wrong advancer
+  // Compare goals only for teams you actually placed in this slot.
   const predGoals = {};
   if (pred.home) predGoals[pred.home] = pred.score[0];
   if (pred.away) predGoals[pred.away] = pred.score[1];
-  const diffs = [actual.home, actual.away].map((team, i) =>
-    team != null && predGoals[team] != null ? Math.abs(predGoals[team] - actual.score[i]) : null);
-  pts += sideTierBonus(base, diffs);
-  return pts;
+  const gh = predGoals[actual.home];
+  const ga = predGoals[actual.away];
+  if (gh != null && ga != null) {
+    if (gh === actual.score[0] && ga === actual.score[1]) return P * 2; // exact score
+    const margin = actual.score[0] - actual.score[1];
+    if (margin !== 0 && gh - ga === margin) return P * 1.5; // GD bonus (decisive in play)
+  }
+  return P; // correct advancer only
 }
 
 // prediction: expanded prediction JSON. results: data/results.json contents.
