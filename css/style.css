@@ -316,3 +316,55 @@ footer.site {
   font-size: 0.8rem;
   padding: 2rem 1rem;
 }
+
+/* ---------------------------------------------------------------------------
+   Results / schedule page */
+.schedule { display: flex; flex-direction: column; gap: 1.4rem; }
+.sched-section > h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+  color: var(--accent-2);
+  border-bottom: 1px solid var(--card-edge);
+  padding-bottom: 0.3rem;
+}
+.match-list { display: flex; flex-direction: column; gap: 0.35rem; }
+.match-row {
+  display: grid;
+  grid-template-columns: 5.6rem 1fr 3.6rem 1fr 1.2rem;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  background: var(--card);
+  border: 1px solid var(--card-edge);
+  border-left: 3px solid var(--card-edge);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.match-row:hover { background: var(--bg-soft); }
+.match-row.played { border-left-color: var(--accent); }
+.match-row .tag { color: var(--muted); font-size: 0.72rem; white-space: nowrap; }
+.match-row .side { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.match-row .side.home { text-align: right; }
+.match-row .side.away { text-align: left; }
+.match-row .score { font-weight: 700; text-align: center; }
+.match-row .score.tbd { color: var(--muted); font-weight: 400; font-style: italic; }
+.match-row .chev { color: var(--muted); text-align: center; font-size: 0.8rem; }
+.match-detail {
+  background: var(--bg-soft);
+  border: 1px solid var(--card-edge);
+  border-radius: 8px;
+  padding: 0.55rem 0.9rem;
+  margin: 0.1rem 0 0.25rem;
+}
+.match-detail .match-result { margin: 0 0 0.4rem; font-size: 0.9rem; }
+.match-detail .match-result.muted { color: var(--muted); font-style: italic; }
+.match-detail table.detail { width: 100%; }
+
+@media (max-width: 560px) {
+  .match-row { grid-template-columns: 1fr 3rem 1fr; grid-template-areas: "tag tag chev" "home score away"; }
+  .match-row .tag { grid-area: tag; }
+  .match-row .chev { grid-area: chev; }
+  .match-row .side.home { grid-area: home; }
+  .match-row .score { grid-area: score; }
+  .match-row .side.away { grid-area: away; }
+}

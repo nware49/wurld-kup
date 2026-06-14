@@ -106,27 +106,32 @@ Each match has a base value **P = 4** in the group stage, doubling every
 knockout round (R32 = 8, R16 = 16, QF = 32, SF & third-place = 64,
 Final = 128):
 
+You must call the result right to score anything; one tier then applies:
+
 | What you got right | Points |
 |---|---|
-| Correct outcome (winner / draw; in knockouts: your advancing team advanced) | P |
-| + Exact score both sides | +P (perfect pick = 2×P) |
-| + Exact one side, or within ±1 on both | +P/2 |
-| + Within ±1 on one side | +P/4 |
+| Correct result (win / loss / draw; in knockouts: your advancing team advanced) | P |
+| Correct result + correct goal difference (win/loss only) | 1.5×P |
+| Correct result + exact score (win/loss/draw) | 2×P |
 
-Outcome points and the (best applicable) score bonus stack. Knockout matches
-are scored slot-by-slot against the real bracket: you get the outcome point
-if the team you advanced from that slot really advanced, and score-side
-comparisons only count for teams you correctly placed in the slot. Full
-details: [rules.html](rules.html) on the site.
+Call the result wrong and the match scores 0 — there's no credit for the
+scoreline alone, and the goal-difference bonus is only available when you
+picked the winning team. Knockout matches are scored slot-by-slot against the
+real bracket: you get the result point if the team you advanced from that slot
+really advanced, and the goal-difference/exact upgrades only count when you
+placed both of the slot's real teams. A knockout settled on penalties has no
+goal difference to earn, so predicting a draw and naming the side that goes
+through is the 1.5×P tier. Full details: [rules.html](rules.html) on the site.
 
 A perfect bracket scores **1,984 points**.
 
 ## Repo layout
 
 ```
-index.html / rules.html / leaderboard.html / admin.html   the site
+index.html / rules.html / leaderboard.html / results.html / admin.html   the site
 js/core.js          shared bracket + scoring logic (browser AND Node)
 js/app.js           prediction builder UI
+js/results.js       schedule + per-match predictions view
 data/tournament.json  teams, groups, knockout template, scoring config
 data/results.json     real results (auto-fetched and/or organizer-maintained)
 data/results-auto.json  last football-data.org snapshot (override detection)
