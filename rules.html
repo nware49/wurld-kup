@@ -32,17 +32,26 @@
 
     <h2 class="section">Scoring a match</h2>
     <div class="rules-box">
-      <p>Every match has a base value <strong>P</strong>. You earn:</p>
+      <p>Every match has a base value <strong>P</strong>. You have to call the result right to score anything;
+      one tier then applies:</p>
       <table>
         <tr><th>What you got right</th><th>Points</th></tr>
-        <tr><td>Correct outcome (winner, or a draw in groups; in knockouts: the team you advanced went through)</td><td>P</td></tr>
-        <tr><td>…plus a score-accuracy bonus (best one applies):</td><td></td></tr>
-        <tr><td>Exact score on both sides</td><td>+P (a perfect pick = <strong>2×P</strong> total)</td></tr>
-        <tr><td>Exact score on one side, or within ±1 on both sides</td><td>+P/2</td></tr>
-        <tr><td>Within ±1 on one side</td><td>+P/4</td></tr>
+        <tr><td>Correct result — win, loss, or draw (in knockouts: the team you advanced went through)</td><td>P</td></tr>
+        <tr><td>Correct result <strong>and</strong> correct goal difference (win/loss only)</td><td><strong>1.5×P</strong></td></tr>
+        <tr><td>Correct result <strong>and</strong> exact score (win/loss/draw)</td><td><strong>2×P</strong></td></tr>
       </table>
-      <p>The outcome point and the score bonus are independent — you can bank score points even if you called
-      the winner wrong, and vice versa.</p>
+      <p>Call the result wrong and you get nothing — there's no consolation for the scoreline alone. The
+      goal-difference bonus is only available when you picked the winning team, so a predicted draw can only
+      be upgraded by nailing the exact score.</p>
+      <p><strong>Examples (P = 4 in the group stage):</strong></p>
+      <ul>
+        <li>You predict <strong>2–2</strong>, it ends <strong>3–3</strong> → correct draw, not exact, no
+          goal-difference bonus on draws → <strong>P (4)</strong>.</li>
+        <li>You predict <strong>2–2</strong>, it ends <strong>2–2</strong> → exact score → <strong>2×P (8)</strong>.</li>
+        <li>You predict <strong>2–1</strong>, it ends <strong>3–2</strong> → right winner, same goal
+          difference → <strong>1.5×P (6)</strong>.</li>
+        <li>You predict <strong>2–1</strong>, it ends <strong>1–2</strong> → wrong winner → <strong>0</strong>.</li>
+      </ul>
     </div>
 
     <h2 class="section">Match values by round</h2>
@@ -64,10 +73,15 @@
     <div class="rules-box">
       <ul>
         <li>Knockout matches are scored slot-by-slot against the real bracket (match 73, match 74, …).</li>
-        <li><strong>Outcome point:</strong> you get it if the team you advanced from that slot actually advanced
-            from it — even if their real opponent wasn't the one in your bracket.</li>
-        <li><strong>Score bonuses:</strong> a side only counts if you had that exact team in that slot; then
-            their predicted goals are compared with their real goals.</li>
+        <li><strong>Result point (P):</strong> you get it if the team you advanced from that slot actually
+            advanced from it — even if their real opponent wasn't the one in your bracket.</li>
+        <li><strong>Goal-difference (1.5×P) and exact-score (2×P) upgrades:</strong> these only kick in when you
+            placed <em>both</em> of the slot's real teams, so their predicted goals can be compared with their
+            real goals. Get the advancer wrong and the match scores 0.</li>
+        <li><strong>Penalty shootouts:</strong> a match settled on penalties is a draw in play, so there's no
+            goal difference to earn. Predicting a draw and naming the side that went through counts like a correct
+            goal difference → <strong>1.5×P</strong>; nailing the exact draw score on top still earns the full
+            <strong>2×P</strong>.</li>
         <li>Third-place teams are slotted into the bracket with the same allowed-group constraints FIFA uses.
             In rare edge cases FIFA's official allocation may differ from ours — the same rule applies to
             everyone, so it stays fair.</li>
