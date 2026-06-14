@@ -325,7 +325,8 @@ export function expandPrediction(tournament, decoded, meta) {
 // upgrades only apply when you placed both of the slot's real teams, so their
 // predicted and real goals can be compared. When the real match goes to a
 // shootout there's no goal difference to earn, so predicting a draw and naming
-// the side that goes through earns the full P x 2 instead.
+// the side that goes through earns the P x 1.5 half-step; the exact draw score
+// is still needed for P x 2.
 
 export function scoreGroupMatch(scoring, pred, actual) {
   const P = scoring.base * scoring.multipliers.GROUP;
@@ -341,11 +342,7 @@ export function scoreGroupMatch(scoring, pred, actual) {
 export function scoreKnockoutMatch(scoring, round, pred, actual) {
   const P = scoring.base * scoring.multipliers[round];
   if (!pred.winner || !actual.winner || pred.winner !== actual.winner) return 0; // wrong advancer
-  // A match the real teams settled on penalties is a draw in play, so there's
-  // no goal difference to earn. Calling the shootout winner — i.e. predicting a
-  // draw and naming the side that goes through — is the top tier instead.
-  if (actual.score[0] === actual.score[1] && pred.score[0] === pred.score[1]) return P * 2;
-  // Otherwise compare goals, but only for teams you actually placed in this slot.
+  // Compare goals, but only for teams you actually placed in this slot.
   const predGoals = {};
   if (pred.home) predGoals[pred.home] = pred.score[0];
   if (pred.away) predGoals[pred.away] = pred.score[1];
@@ -356,6 +353,11 @@ export function scoreKnockoutMatch(scoring, round, pred, actual) {
     const margin = actual.score[0] - actual.score[1];
     if (margin !== 0 && gh - ga === margin) return P * 1.5; // GD bonus (decisive in play)
   }
+  // A match the real teams settled on penalties is a draw in play, so there's
+  // no goal difference to earn. Calling the shootout winner — predicting a draw
+  // and naming the side that goes through — is the half-step up instead, the
+  // same way a correct goal difference is for a decisive match.
+  if (actual.score[0] === actual.score[1] && pred.score[0] === pred.score[1]) return P * 1.5;
   return P; // correct advancer only
 }
 

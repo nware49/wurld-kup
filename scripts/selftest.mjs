@@ -128,7 +128,7 @@ check(scoreKnockoutMatch(sc, "R32", { home: "GER", away: "ARG", score: [3, 2], w
 check(scoreKnockoutMatch(sc, "R32", { home: "GER", away: "BRA", score: [1, 1], winner: "GER" },
   A("GER", "BRA", [1, 1], 1)) === 16, "KO exact draw + right pens winner = 2P");
 check(scoreKnockoutMatch(sc, "R32", { home: "GER", away: "BRA", score: [2, 2], winner: "GER" },
-  A("GER", "BRA", [1, 1], 1)) === 16, "KO right pens winner, inexact draw = 2P");
+  A("GER", "BRA", [1, 1], 1)) === 12, "KO right pens winner, inexact draw = 1.5P");
 check(scoreKnockoutMatch(sc, "R32", { home: "GER", away: "BRA", score: [1, 1], winner: "BRA" },
   A("GER", "BRA", [1, 1], 1)) === 0, "KO wrong pens winner = 0");
 check(scoreKnockoutMatch(sc, "R32", { home: "GER", away: "BRA", score: [2, 1], winner: "GER" },
