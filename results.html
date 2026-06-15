@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="robots" content="noindex, nofollow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leaderboard — Wurld Kup '26</title>
+  <title>Results — Wurld Kup '26</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚽</text></svg>">
 </head>
@@ -13,29 +13,20 @@
     <h1><span class="ball">⚽</span>Wurld Kup '26</h1>
     <nav>
       <a href="index.html">Predict</a>
-      <a href="leaderboard.html" class="active">Leaderboard</a>
-      <a href="results.html">Results</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="results.html" class="active">Results</a>
       <a href="rules.html">Rules</a>
     </nav>
   </header>
 
   <main>
     <div id="status"></div>
-    <table class="board" id="board" style="display:none">
-      <thead>
-        <tr>
-          <th>#</th><th>Name</th><th>Champion</th>
-          <th>Groups</th><th>R32</th><th>R16</th><th>QF</th><th>SF</th><th>3rd</th><th>Final</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody id="board-body"></tbody>
-    </table>
-    <p class="intro" style="margin-top:1rem">Click a row to see the match-by-match breakdown.
-    Click a name to view their full bracket.</p>
+    <p class="intro" id="intro" style="display:none">The full schedule in match order. Click any game to
+      see the final score (or a placeholder until it's played) and everyone's predictions for it.</p>
+    <div class="schedule" id="schedule"></div>
   </main>
 
   <footer class="site">Self-hosted bracket pool</footer>
-  <script type="module" src="js/leaderboard.js"></script>
+  <script type="module" src="js/results.js"></script>
 </body>
 </html>
