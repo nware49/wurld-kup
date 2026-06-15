@@ -42,6 +42,24 @@ check(GROUP_IDS.every((g) => tournament.groups[g]?.length === 4), "12 groups of 
 const allCodes = GROUP_IDS.flatMap((g) => tournament.groups[g].map((t) => t.code));
 check(new Set(allCodes).size === 48, "48 unique team codes");
 
+// Schedule (data/schedule.json) must cover all 104 matches: every group's 6
+// PAIR_ORDER slots exactly once (matchdays 1-3), and every knockout match.
+{
+  const schedule = JSON.parse(readFileSync(new URL("../data/schedule.json", import.meta.url)));
+  check(schedule.length === 104, "schedule has 104 matches");
+  check(new Set(schedule.map((e) => e.m)).size === 104, "schedule match numbers unique");
+  const groupEntries = schedule.filter((e) => e.round === "GROUP");
+  check(groupEntries.length === 72, "schedule has 72 group matches");
+  check(groupEntries.every((e) => e.md === Math.floor((e.m - 1) / 24) + 1), "schedule matchdays follow match number");
+  for (const g of GROUP_IDS) {
+    const slots = groupEntries.filter((e) => e.g === g).map((e) => e.slot).sort();
+    check(JSON.stringify(slots) === "[0,1,2,3,4,5]", `schedule group ${g} covers all 6 slots`);
+  }
+  const koNums = tournament.knockout.map((d) => d.m).sort((a, b) => a - b);
+  const schedKo = schedule.filter((e) => e.round !== "GROUP").map((e) => e.m).sort((a, b) => a - b);
+  check(JSON.stringify(koNums) === JSON.stringify(schedKo), "schedule knockout matches match tournament.json");
+}
+
 const rand = mulberry32(2026);
 for (let trial = 0; trial < 500; trial++) {
   const { groups, ko } = randomBracket(rand);

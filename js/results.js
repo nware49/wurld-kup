@@ -19,10 +19,11 @@ async function init() {
   const status = $("#status");
   status.innerHTML = `<div class="notice">Loading…</div>`;
   try {
-    const [tournament, results, index] = await Promise.all([
+    const [tournament, results, index, schedule] = await Promise.all([
       fetchJson("data/tournament.json"),
       fetchJson("data/results.json"),
       fetchJson("data/predictions/index.json"),
+      fetchJson("data/schedule.json").catch(() => null),
     ]);
 
     const predictions = await Promise.all(
@@ -40,21 +41,39 @@ async function init() {
       <strong>${playedGroups + playedKo} / 104</strong> matches played.</div>`;
     $("#intro").style.display = "";
 
-    renderSchedule(ctx, buildSections(tournament));
+    renderSchedule(ctx, buildSections(tournament, schedule));
   } catch (err) {
     status.innerHTML = `<div class="notice error">Couldn't load the schedule: ${esc(err.message)}</div>`;
   }
 }
 
-// Chronological at the round level (no kickoff times exist in the data): all
-// of matchday 1 before matchday 2, group stage before knockouts, etc. Group
-// matchdays follow PAIR_ORDER (pairs 0–1 = MD1, 2–3 = MD2, 4–5 = MD3).
-function buildSections(tournament) {
+const MD_TITLES = { 1: "Group stage — Matchday 1", 2: "Group stage — Matchday 2", 3: "Group stage — Matchday 3" };
+
+// With data/schedule.json (the official FIFA fixture list), matches are shown in
+// real kickoff order: group stage by matchday, then each knockout round. FIFA
+// numbers matches chronologically, so sorting by match number is the schedule.
+// Without it, fall back to listing the group stage by group (no faked order).
+function buildSections(tournament, schedule) {
+  const koByNum = Object.fromEntries(tournament.knockout.map((d) => [d.m, d]));
   const sections = [];
-  for (let md = 0; md < 3; md++) {
-    const matches = [];
-    for (const g of GROUP_IDS) for (const idx of [md * 2, md * 2 + 1]) matches.push({ kind: "group", g, idx });
-    sections.push({ title: `Group stage — Matchday ${md + 1}`, matches });
+
+  if (schedule?.length) {
+    const byM = (a, b) => a.m - b.m;
+    for (const md of [1, 2, 3]) {
+      const matches = schedule.filter((e) => e.round === "GROUP" && e.md === md).sort(byM)
+        .map((e) => ({ kind: "group", g: e.g, idx: e.slot, m: e.m, time: e.time }));
+      if (matches.length) sections.push({ title: MD_TITLES[md], matches });
+    }
+    for (const [r, title] of KO_ROUNDS) {
+      const matches = schedule.filter((e) => e.round === r).sort(byM)
+        .map((e) => ({ kind: "ko", def: koByNum[e.m], m: e.m, time: e.time }));
+      if (matches.length) sections.push({ title, matches });
+    }
+    return sections;
+  }
+
+  for (const g of GROUP_IDS) {
+    sections.push({ title: `Group ${g}`, matches: PAIR_ORDER.map((_, idx) => ({ kind: "group", g, idx })) });
   }
   const byRound = {};
   for (const def of [...tournament.knockout].sort((a, b) => a.m - b.m)) (byRound[def.r] ??= []).push(def);
@@ -111,7 +130,7 @@ function renderMatch(ctx, m) {
 // ---------------------------------------------------------------------------
 // Group matches
 
-function groupView(ctx, { g, idx }) {
+function groupView(ctx, { g, idx, m, time }) {
   const [i, j] = PAIR_ORDER[idx];
   const teams = ctx.tournament.groups[g];
   const home = teams[i], away = teams[j];
@@ -127,12 +146,13 @@ function groupView(ctx, { g, idx }) {
     .sort(byPtsThenName(played));
 
   return {
-    tag: `Group ${g}`,
+    tag: m ? `${g} · M${m}` : `Group ${g}`,
     home: `${esc(home.name)} ${home.flag}`,
     away: `${away.flag} ${esc(away.name)}`,
     score: played ? `${actual[0]}–${actual[1]}` : "vs",
     played,
-    detail: detailHTML(played ? `Final score: <strong>${actual[0]}–${actual[1]}</strong>` : null, rows),
+    detail: detailHTML(played ? `Final score: <strong>${actual[0]}–${actual[1]}</strong>` : null, rows,
+      null, kickoffMeta(m, time)),
   };
 }
 
@@ -148,7 +168,7 @@ const SLOT = {
 };
 const slotLabel = (def) => SLOT[def.t]?.(def) ?? "?";
 
-function koView(ctx, { def }) {
+function koView(ctx, { def, m, time }) {
   const ROUND_TAGS = { R32: "R32", R16: "R16", QF: "QF", SF: "SF", "3P": "3rd", F: "Final" };
   const actual = ctx.results.knockout?.[String(def.m)] ?? null;
   const played = !!(actual && actual.score);
@@ -176,13 +196,18 @@ function koView(ctx, { def }) {
   const subhead = played ? null : `Matchup: ${esc(slotLabel(def.h))} vs ${esc(slotLabel(def.a))}`;
 
   return {
-    tag: `M${def.m} · ${ROUND_TAGS[def.r]}`,
+    tag: `${ROUND_TAGS[def.r]} · M${def.m}`,
     home: played ? teamLabel(ctx, actual.home) : esc(slotLabel(def.h)),
     away: played ? teamLabel(ctx, actual.away) : esc(slotLabel(def.a)),
     score: played ? `${actual.score[0]}–${actual.score[1]}` : "vs",
     played,
-    detail: detailHTML(header, rows, subhead),
+    detail: detailHTML(header, rows, subhead, kickoffMeta(m, time)),
   };
+}
+
+function kickoffMeta(m, time) {
+  if (!m) return null;
+  return time ? `Match ${m} · ${time} ET` : `Match ${m}`;
 }
 
 function koScoreLabel(ctx, e) {
@@ -209,13 +234,14 @@ function byPtsThenName(played) {
     (played ? (b.pts ?? -1) - (a.pts ?? -1) : 0) || a.name.localeCompare(b.name);
 }
 
-function detailHTML(header, rows, subhead) {
-  if (!rows.length) return `<em>No brackets submitted yet.</em>`;
+function detailHTML(header, rows, subhead, meta) {
+  const metaLine = meta ? `<p class="match-meta">${esc(meta)}</p>` : "";
+  if (!rows.length) return metaLine + `<em>No brackets submitted yet.</em>`;
   const head = header
     ? `<p class="match-result">${header}</p>`
     : `<p class="match-result muted">Not played yet — predictions below.${subhead ? `<br>${esc(subhead)}` : ""}</p>`;
   const played = !!header;
-  return head +
+  return metaLine + head +
     `<table class="detail">
       <tr><th>Name</th><th>Prediction</th>${played ? `<th style="text-align:right">Pts</th>` : ""}</tr>` +
     rows.map((r) =>

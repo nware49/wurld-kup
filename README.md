@@ -133,12 +133,14 @@ js/core.js          shared bracket + scoring logic (browser AND Node)
 js/app.js           prediction builder UI
 js/results.js       schedule + per-match predictions view
 data/tournament.json  teams, groups, knockout template, scoring config
+data/schedule.json    official match order (kickoff times, matchday, slot map)
 data/results.json     real results (auto-fetched and/or organizer-maintained)
 data/results-auto.json  last football-data.org snapshot (override detection)
 data/predictions/     one JSON per submitted bracket + index.json
 scripts/process-submission.mjs   issue → prediction file (GitHub Action)
 scripts/process-results.mjs      issue → results.json (GitHub Action)
 scripts/fetch-results.mjs        football-data.org → results.json (scheduled Action)
+scripts/build-schedule.mjs       FIFA fixture list → data/schedule.json
 scripts/import-bracket.mjs       manual import for emailed brackets
 scripts/selftest.mjs             logic self-tests (run in CI before deploy)
 .github/workflows/    submission, results, and Pages deploy automation
