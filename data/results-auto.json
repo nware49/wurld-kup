@@ -14,20 +14,6 @@
       null,
       null
     ],
-    "B": [
-      null,
-      null,
-      null,
-      null,
-      [
-        1,
-        1
-      ],
-      [
-        1,
-        1
-      ]
-    ],
     "D": [
       null,
       null,
@@ -40,6 +26,17 @@
       [
         0,
         2
+      ]
+    ],
+    "B": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      [
+        1,
+        1
       ]
     ],
     "C": [
@@ -93,6 +90,17 @@
         0,
         0
       ],
+      null
+    ],
+    "G": [
+      null,
+      null,
+      [
+        1,
+        1
+      ],
+      null,
+      null,
       null
     ]
   },
