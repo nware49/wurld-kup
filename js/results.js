@@ -46,15 +46,18 @@ async function init() {
   }
 }
 
-// Chronological at the round level (no kickoff times exist in the data): all
-// of matchday 1 before matchday 2, group stage before knockouts, etc. Group
-// matchdays follow PAIR_ORDER (pairs 0–1 = MD1, 2–3 = MD2, 4–5 = MD3).
+// The data has no kickoff times or matchday info — group scores are stored by
+// team-pair slot (PAIR_ORDER), which is just a serialization order, not the
+// real schedule. So we don't fake a chronology: group-stage matches are listed
+// per group, and knockout matches by round (those are genuinely ordered by
+// match number). Drop in a real schedule later to sort by kickoff.
 function buildSections(tournament) {
   const sections = [];
-  for (let md = 0; md < 3; md++) {
-    const matches = [];
-    for (const g of GROUP_IDS) for (const idx of [md * 2, md * 2 + 1]) matches.push({ kind: "group", g, idx });
-    sections.push({ title: `Group stage — Matchday ${md + 1}`, matches });
+  for (const g of GROUP_IDS) {
+    sections.push({
+      title: `Group ${g}`,
+      matches: PAIR_ORDER.map((_, idx) => ({ kind: "group", g, idx })),
+    });
   }
   const byRound = {};
   for (const def of [...tournament.knockout].sort((a, b) => a.m - b.m)) (byRound[def.r] ??= []).push(def);
@@ -127,7 +130,7 @@ function groupView(ctx, { g, idx }) {
     .sort(byPtsThenName(played));
 
   return {
-    tag: `Group ${g}`,
+    tag: "",
     home: `${esc(home.name)} ${home.flag}`,
     away: `${away.flag} ${esc(away.name)}`,
     score: played ? `${actual[0]}–${actual[1]}` : "vs",
