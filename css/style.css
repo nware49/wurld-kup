@@ -356,6 +356,7 @@ footer.site {
   padding: 0.55rem 0.9rem;
   margin: 0.1rem 0 0.25rem;
 }
+.match-detail .match-meta { margin: 0 0 0.3rem; font-size: 0.75rem; color: var(--muted); }
 .match-detail .match-result { margin: 0 0 0.4rem; font-size: 0.9rem; }
 .match-detail .match-result.muted { color: var(--muted); font-style: italic; }
 .match-detail table.detail { width: 100%; }
