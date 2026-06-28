@@ -8,39 +8,53 @@ import { GROUP_IDS, PAIR_ORDER, ROUND_LABELS, matchWinnerSide } from "./core.js"
 const $ = (sel) => document.querySelector(sel);
 
 // ---------------------------------------------------------------------------
-// Original scoring (snapshot)
+// Original scoring (snapshot of the first scoring mechanic, before the
+// result/goal-difference/exact-tier rework). This is the version that rewards
+// getting *close* to each individual team's score on top of the outcome.
 //
-// Base points P per match (group stage), doubled each knockout round. You must
-// call the result correctly to score anything; a single tier then applies:
-//   - Correct result only (win/loss/draw):            P
-//   - Correct result + correct goal difference (W/L):  P x 1.5
-//   - Correct result + exact score (W/L/D):            P x 2
+// Base points P per match (group stage), doubled each knockout round.
+//   - Correct outcome (winner, or a draw in the group stage): +P
+//   - Score accuracy bonus (best single tier applies):
+//       exact score on both sides:          +P    (so a perfect pick = 2 x P)
+//       exact on one side / within 1 both:  +P/2
+//       within 1 on one side:               +P/4
+// In knockouts, "outcome" means the team you advanced actually advanced, even
+// if your predicted opponent was wrong. Score-side comparisons only count for
+// teams you correctly placed in that bracket slot.
+
+function sideTierBonus(base, diffs) {
+  // diffs: array of per-side absolute goal differences for matched sides.
+  const matched = diffs.filter((d) => d != null);
+  if (matched.length === 0) return 0;
+  const exact = matched.filter((d) => d === 0).length;
+  const close = matched.filter((d) => d <= 1).length;
+  if (matched.length === 2 && exact === 2) return base;
+  if (exact >= 1 || (matched.length === 2 && close === 2)) return base / 2;
+  if (close >= 1) return base / 4;
+  return 0;
+}
 
 function scoreGroupMatch(scoring, pred, actual) {
-  const P = scoring.base * scoring.multipliers.GROUP;
+  const base = scoring.base * scoring.multipliers.GROUP;
+  let pts = 0;
   const po = Math.sign(pred[0] - pred[1]);
   const ao = Math.sign(actual[0] - actual[1]);
-  if (po !== ao) return 0; // wrong result — no points
-  if (pred[0] === actual[0] && pred[1] === actual[1]) return P * 2; // exact score
-  if (po !== 0 && pred[0] - pred[1] === actual[0] - actual[1]) return P * 1.5; // GD bonus (W/L only)
-  return P; // correct result only
+  if (po === ao) pts += base;
+  pts += sideTierBonus(base, [Math.abs(pred[0] - actual[0]), Math.abs(pred[1] - actual[1])]);
+  return pts;
 }
 
 function scoreKnockoutMatch(scoring, round, pred, actual) {
-  const P = scoring.base * scoring.multipliers[round];
-  if (!pred.winner || !actual.winner || pred.winner !== actual.winner) return 0; // wrong advancer
+  const base = scoring.base * scoring.multipliers[round];
+  let pts = 0;
+  if (pred.winner && actual.winner && pred.winner === actual.winner) pts += base;
   const predGoals = {};
   if (pred.home) predGoals[pred.home] = pred.score[0];
   if (pred.away) predGoals[pred.away] = pred.score[1];
-  const gh = predGoals[actual.home];
-  const ga = predGoals[actual.away];
-  if (gh != null && ga != null) {
-    if (gh === actual.score[0] && ga === actual.score[1]) return P * 2; // exact score
-    const margin = actual.score[0] - actual.score[1];
-    if (margin !== 0 && gh - ga === margin) return P * 1.5; // GD bonus
-  }
-  if (actual.score[0] === actual.score[1] && pred.score[0] === pred.score[1]) return P * 1.5;
-  return P; // correct advancer only
+  const diffs = [actual.home, actual.away].map((team, i) =>
+    team != null && predGoals[team] != null ? Math.abs(predGoals[team] - actual.score[i]) : null);
+  pts += sideTierBonus(base, diffs);
+  return pts;
 }
 
 function scoreUser(tournament, prediction, results) {
