@@ -353,7 +353,10 @@
     "77": {
       "home": "FRA",
       "away": "SWE",
-      "score": null,
+      "score": [
+        3,
+        0
+      ],
       "pens": null
     },
     "78": {
@@ -427,7 +430,7 @@
     },
     "89": {
       "home": "PAR",
-      "away": null,
+      "away": "FRA",
       "score": null,
       "pens": null
     },
