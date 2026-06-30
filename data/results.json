@@ -359,7 +359,10 @@
     "78": {
       "home": "CIV",
       "away": "NOR",
-      "score": null,
+      "score": [
+        1,
+        2
+      ],
       "pens": null
     },
     "79": {
@@ -436,7 +439,7 @@
     },
     "91": {
       "home": "BRA",
-      "away": null,
+      "away": "NOR",
       "score": null,
       "pens": null
     }
