@@ -235,6 +235,14 @@ const emptyResults = { groups: {}, knockout: {} };
     "R16 resolves from same-batch R32 winners (m90)");
   check(r.warnings.length === 0, "knockout batch maps without warnings");
 
+  // Propagation: with the groups final, every still-unplayed R32 slot carries
+  // its teams (score-less) — e.g. m84 = Winner H v Runner-up J, never in the
+  // batch. Later rounds whose feeders haven't been played stay absent (m95).
+  check(eqJ(r.results.knockout["84"],
+    { home: tables.H[0].code, away: tables.J[1].code, score: null, pens: null }),
+    "unplayed R32 slot propagated from final group tables (m84)");
+  check(r.results.knockout["95"] == null, "R16 absent until its R32 feeders are played (m95)");
+
   // Organizer-corrected knockout entry survives the next fetch.
   const curKoOv = { groups, knockout: { 73: { home: ruA, away: ruB, score: [2, 1], pens: null } } };
   const r2 = applyFixtures(tournament, curKoOv, { groups, knockout: r.auto.knockout }, batch.slice(0, 2));
