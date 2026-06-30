@@ -326,14 +326,20 @@
     "74": {
       "home": "GER",
       "away": "PAR",
-      "score": null,
-      "pens": null
+      "score": [
+        1,
+        1
+      ],
+      "pens": 2
     },
     "75": {
       "home": "NED",
       "away": "MAR",
-      "score": null,
-      "pens": null
+      "score": [
+        1,
+        1
+      ],
+      "pens": 2
     },
     "76": {
       "home": "BRA",
@@ -416,9 +422,15 @@
       "score": null,
       "pens": null
     },
+    "89": {
+      "home": "PAR",
+      "away": null,
+      "score": null,
+      "pens": null
+    },
     "90": {
       "home": "CAN",
-      "away": null,
+      "away": "MAR",
       "score": null,
       "pens": null
     },
