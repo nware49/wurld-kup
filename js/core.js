@@ -103,14 +103,44 @@ export function rankThirds(tables) {
     .sort((a, b) => baseCompare(a.stats, b.stats) || a.stats.code.localeCompare(b.stats.code));
 }
 
+// FIFA's official third-place allocation is a fixed published lookup table, not
+// an algorithm — it maps the *set* of eight groups whose third-placed team
+// qualifies (regardless of their ranking) to a specific bracket slot for each.
+// The backtracking below produces a valid assignment but not always FIFA's, so
+// known official combinations are pinned here to match the real tournament.
+// Key: the eight qualifying group letters, sorted and concatenated. Value:
+// { matchNumber: thirdPlaceGroup }.
+export const OFFICIAL_THIRD_ALLOCATION = {
+  // 2026: thirds from B, D, E, F, I, J, K, L advanced (the locked group stage).
+  // Verified against the published Round of 32 bracket, e.g. Winner E (Germany)
+  // v 3rd D (Paraguay) and Winner I (France) v 3rd F (Sweden).
+  BDEFIJKL: { 74: "D", 77: "F", 79: "E", 80: "K", 81: "B", 82: "I", 85: "J", 87: "L" },
+};
+
 // Assign the 8 qualified third-place groups to the third-place bracket slots.
 // slots: [{ m, opts }] in match order; thirdGroups: qualified group letters in
-// ranking order. Deterministic backtracking: earliest slot gets the
-// best-ranked compatible third that still allows a full assignment. FIFA's
-// official allocation table may differ in edge cases, but this is fully
-// deterministic, honors the allowed-group constraints, and the same algorithm
-// is applied to every submitted bracket, so it's fair.
+// ranking order. Uses FIFA's official table when the qualifying combination is
+// known; otherwise falls back to deterministic backtracking — earliest slot
+// gets the best-ranked compatible third that still allows a full assignment.
+// The fallback honors the allowed-group constraints and is applied identically
+// to every bracket, so it stays fair even where the official table isn't pinned.
 export function allocateThirds(slots, thirdGroups) {
+  const official = OFFICIAL_THIRD_ALLOCATION[[...thirdGroups].sort().join("")];
+  if (official) {
+    // Trust the pinned table only if it fits this bracket's slots: every slot
+    // gets a distinct qualified group drawn from its own allowed list.
+    const picked = {};
+    const taken = new Set();
+    const fits = slots.every((s) => {
+      const g = official[s.m];
+      if (!g || taken.has(g) || !thirdGroups.includes(g) || !s.opts.includes(g)) return false;
+      taken.add(g);
+      picked[s.m] = g;
+      return true;
+    });
+    if (fits && taken.size === slots.length) return picked;
+  }
+
   const assignment = {};
   const used = new Set();
   function backtrack(i) {

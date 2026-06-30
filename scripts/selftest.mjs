@@ -4,6 +4,7 @@ import { readFileSync } from "node:fs";
 import {
   GROUP_IDS, PAIR_ORDER, buildBracket, encodePayload, decodePayload,
   validateBracket, expandPrediction, scoreUser, rankThirds, computeAllTables,
+  allocateThirds,
 } from "../js/core.js";
 
 const tournament = JSON.parse(readFileSync(new URL("../data/tournament.json", import.meta.url)));
@@ -58,6 +59,20 @@ check(new Set(allCodes).size === 48, "48 unique team codes");
   const koNums = tournament.knockout.map((d) => d.m).sort((a, b) => a - b);
   const schedKo = schedule.filter((e) => e.round !== "GROUP").map((e) => e.m).sort((a, b) => a - b);
   check(JSON.stringify(koNums) === JSON.stringify(schedKo), "schedule knockout matches match tournament.json");
+}
+
+// FIFA's official third-place allocation (pinned for the locked 2026 combination)
+// must win over the deterministic fallback when those eight groups qualify.
+{
+  const slots = tournament.knockout
+    .filter((d) => d.a.t === "3")
+    .map((d) => ({ m: d.m, opts: d.a.o }));
+  const official = { 74: "D", 77: "F", 79: "E", 80: "K", 81: "B", 82: "I", 85: "J", 87: "L" };
+  // Pass the qualifying groups in a deliberately unsorted order to prove the
+  // lookup is keyed on the set, not the ranking order.
+  const alloc = allocateThirds(slots, ["K", "F", "E", "L", "B", "J", "D", "I"]);
+  check(JSON.stringify(alloc) === JSON.stringify(official),
+    `official 2026 third-place allocation (got ${JSON.stringify(alloc)})`);
 }
 
 const rand = mulberry32(2026);
