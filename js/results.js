@@ -1,5 +1,5 @@
 import {
-  GROUP_IDS, PAIR_ORDER, matchWinnerSide, scoreGroupMatch, scoreKnockoutMatch,
+  GROUP_IDS, PAIR_ORDER, matchWinnerSide, scoreGroupMatch, scoreKnockoutMatch, buildBracket,
 } from "./core.js";
 
 const $ = (sel) => document.querySelector(sel);
@@ -33,7 +33,13 @@ async function init() {
     const teamsByCode = {};
     for (const g of GROUP_IDS) for (const t of tournament.groups[g]) teamsByCode[t.code] = t;
 
-    const ctx = { tournament, results, predictions, teamsByCode, scoring: tournament.scoring };
+    // Resolve every knockout slot to a real team where the bracket allows it:
+    // group winners/runners-up and the third-place allocation are known once the
+    // groups finish, and each round's winners feed the next. This lets the
+    // schedule show actual matchups (e.g. the R32) instead of "Winner Group A".
+    const bracket = buildBracket(tournament, results.groups ?? {}, results.knockout ?? {});
+
+    const ctx = { tournament, results, predictions, teamsByCode, scoring: tournament.scoring, bracket };
 
     const playedGroups = GROUP_IDS.reduce((n, g) => n + (results.groups?.[g]?.filter(Boolean).length ?? 0), 0);
     const playedKo = Object.values(results.knockout ?? {}).filter((m) => m?.score).length;
@@ -190,15 +196,26 @@ function koView(ctx, { def, m, time }) {
     })
     .sort(byPtsThenName(played));
 
+  // Teams resolved from the bracket (group standings + earlier-round winners).
+  // null until the feeding results exist, in which case we fall back to the slot
+  // description ("Winner Group A", "3rd place (C/E/F/H/I)", "Winner of M74").
+  const resolved = ctx.bracket?.matches?.[def.m] ?? null;
+  const homeSide = played ? teamLabel(ctx, actual.home)
+    : resolved?.home ? teamLabel(ctx, resolved.home) : esc(slotLabel(def.h));
+  const awaySide = played ? teamLabel(ctx, actual.away)
+    : resolved?.away ? teamLabel(ctx, resolved.away) : esc(slotLabel(def.a));
+
   const header = played
     ? `Final: <strong>${koScoreLabel(ctx, actual)}</strong>`
     : null;
+  // Keep the seeding (slot) description visible even once the teams are known,
+  // so the third-place allocation can be sanity-checked against the bracket.
   const subhead = played ? null : `Matchup: ${esc(slotLabel(def.h))} vs ${esc(slotLabel(def.a))}`;
 
   return {
     tag: `${ROUND_TAGS[def.r]} · M${def.m}`,
-    home: played ? teamLabel(ctx, actual.home) : esc(slotLabel(def.h)),
-    away: played ? teamLabel(ctx, actual.away) : esc(slotLabel(def.a)),
+    home: homeSide,
+    away: awaySide,
     score: played ? `${actual.score[0]}–${actual.score[1]}` : "vs",
     played,
     detail: detailHTML(header, rows, subhead, kickoffMeta(m, time)),

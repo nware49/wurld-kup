@@ -323,6 +323,18 @@
       ],
       "pens": null
     },
+    "74": {
+      "home": "GER",
+      "away": "SWE",
+      "score": null,
+      "pens": null
+    },
+    "75": {
+      "home": "NED",
+      "away": "MAR",
+      "score": null,
+      "pens": null
+    },
     "76": {
       "home": "BRA",
       "away": "JPN",
@@ -330,6 +342,90 @@
         2,
         1
       ],
+      "pens": null
+    },
+    "77": {
+      "home": "FRA",
+      "away": "PAR",
+      "score": null,
+      "pens": null
+    },
+    "78": {
+      "home": "CIV",
+      "away": "NOR",
+      "score": null,
+      "pens": null
+    },
+    "79": {
+      "home": "MEX",
+      "away": "ECU",
+      "score": null,
+      "pens": null
+    },
+    "80": {
+      "home": "ENG",
+      "away": "COD",
+      "score": null,
+      "pens": null
+    },
+    "81": {
+      "home": "USA",
+      "away": "BIH",
+      "score": null,
+      "pens": null
+    },
+    "82": {
+      "home": "BEL",
+      "away": "ALG",
+      "score": null,
+      "pens": null
+    },
+    "83": {
+      "home": "POR",
+      "away": "CRO",
+      "score": null,
+      "pens": null
+    },
+    "84": {
+      "home": "ESP",
+      "away": "AUT",
+      "score": null,
+      "pens": null
+    },
+    "85": {
+      "home": "SUI",
+      "away": "SEN",
+      "score": null,
+      "pens": null
+    },
+    "86": {
+      "home": "ARG",
+      "away": "CPV",
+      "score": null,
+      "pens": null
+    },
+    "87": {
+      "home": "COL",
+      "away": "GHA",
+      "score": null,
+      "pens": null
+    },
+    "88": {
+      "home": "AUS",
+      "away": "EGY",
+      "score": null,
+      "pens": null
+    },
+    "90": {
+      "home": "CAN",
+      "away": null,
+      "score": null,
+      "pens": null
+    },
+    "91": {
+      "home": "BRA",
+      "away": null,
+      "score": null,
       "pens": null
     }
   }

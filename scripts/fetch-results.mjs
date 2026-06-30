@@ -14,7 +14,7 @@
 import { readFileSync, writeFileSync, appendFileSync, existsSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 import {
-  GROUP_IDS, PAIR_ORDER, computeAllTables, groupComplete, matchWinnerSide,
+  GROUP_IDS, PAIR_ORDER, computeAllTables, groupComplete, matchWinnerSide, buildBracket,
 } from "../js/core.js";
 
 const API_URL = "https://api.football-data.org/v4/competitions/WC/matches";
@@ -237,6 +237,22 @@ export function applyFixtures(tournament, current, prevAuto, fixtures) {
     const e = koOverride(m) ? normKo(cur.knockout[m]) : auto.knockout[m] ?? normKo(cur.knockout[m]);
     if (e.home || e.away || e.score) results.knockout[m] = e;
   }
+
+  // Propagate qualifiers into the rounds they feed. Once a knockout match has a
+  // recorded winner — or the group tables are final — the next slot's team is
+  // known before that match kicks off (e.g. recording M73 fills the home side of
+  // its R16 match). Derive home/away for every still-unplayed knockout match
+  // from the bracket so results.json always shows who's due to meet. Played
+  // matches keep the home/away order the API reported (their score is tied to
+  // it); only score-less slots are filled, and they're re-derived every run.
+  const bracket = buildBracket(tournament, results.groups, results.knockout);
+  for (const def of tournament.knockout) {
+    if (results.knockout[def.m]?.score) continue;
+    const { home, away } = bracket.matches[def.m];
+    if (!home && !away) continue;
+    results.knockout[def.m] = { home: home ?? null, away: away ?? null, score: null, pens: null };
+  }
+
   return { results, auto, warnings };
 }
 
