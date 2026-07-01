@@ -371,7 +371,10 @@
     "79": {
       "home": "MEX",
       "away": "ECU",
-      "score": null,
+      "score": [
+        2,
+        0
+      ],
       "pens": null
     },
     "80": {
@@ -443,6 +446,12 @@
     "91": {
       "home": "BRA",
       "away": "NOR",
+      "score": null,
+      "pens": null
+    },
+    "92": {
+      "home": "MEX",
+      "away": null,
       "score": null,
       "pens": null
     }
