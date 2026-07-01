@@ -380,7 +380,10 @@
     "80": {
       "home": "ENG",
       "away": "COD",
-      "score": null,
+      "score": [
+        2,
+        1
+      ],
       "pens": null
     },
     "81": {
@@ -451,7 +454,7 @@
     },
     "92": {
       "home": "MEX",
-      "away": null,
+      "away": "ENG",
       "score": null,
       "pens": null
     }
