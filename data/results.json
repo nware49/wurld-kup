@@ -413,7 +413,10 @@
     "84": {
       "home": "ESP",
       "away": "AUT",
-      "score": null,
+      "score": [
+        3,
+        0
+      ],
       "pens": null
     },
     "85": {
@@ -461,6 +464,12 @@
     "92": {
       "home": "MEX",
       "away": "ENG",
+      "score": null,
+      "pens": null
+    },
+    "93": {
+      "home": null,
+      "away": "ESP",
       "score": null,
       "pens": null
     },
