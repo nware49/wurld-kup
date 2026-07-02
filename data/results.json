@@ -389,7 +389,10 @@
     "81": {
       "home": "USA",
       "away": "BIH",
-      "score": null,
+      "score": [
+        2,
+        0
+      ],
       "pens": null
     },
     "82": {
@@ -462,7 +465,7 @@
       "pens": null
     },
     "94": {
-      "home": null,
+      "home": "USA",
       "away": "BEL",
       "score": null,
       "pens": null
