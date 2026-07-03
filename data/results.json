@@ -407,7 +407,10 @@
     "83": {
       "home": "POR",
       "away": "CRO",
-      "score": null,
+      "score": [
+        2,
+        1
+      ],
       "pens": null
     },
     "84": {
@@ -468,7 +471,7 @@
       "pens": null
     },
     "93": {
-      "home": null,
+      "home": "POR",
       "away": "ESP",
       "score": null,
       "pens": null
