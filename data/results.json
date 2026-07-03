@@ -425,7 +425,10 @@
     "85": {
       "home": "SUI",
       "away": "ALG",
-      "score": null,
+      "score": [
+        2,
+        0
+      ],
       "pens": null
     },
     "86": {
@@ -479,6 +482,12 @@
     "94": {
       "home": "USA",
       "away": "BEL",
+      "score": null,
+      "pens": null
+    },
+    "96": {
+      "home": "SUI",
+      "away": null,
       "score": null,
       "pens": null
     }
