@@ -434,13 +434,19 @@
     "86": {
       "home": "ARG",
       "away": "CPV",
-      "score": null,
+      "score": [
+        3,
+        2
+      ],
       "pens": null
     },
     "87": {
       "home": "COL",
       "away": "GHA",
-      "score": null,
+      "score": [
+        1,
+        0
+      ],
       "pens": null
     },
     "88": {
@@ -485,9 +491,15 @@
       "score": null,
       "pens": null
     },
+    "95": {
+      "home": "ARG",
+      "away": null,
+      "score": null,
+      "pens": null
+    },
     "96": {
       "home": "SUI",
-      "away": null,
+      "away": "COL",
       "score": null,
       "pens": null
     }

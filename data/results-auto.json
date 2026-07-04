@@ -430,6 +430,24 @@
         0
       ],
       "pens": null
+    },
+    "86": {
+      "home": "ARG",
+      "away": "CPV",
+      "score": [
+        3,
+        2
+      ],
+      "pens": null
+    },
+    "87": {
+      "home": "COL",
+      "away": "GHA",
+      "score": [
+        1,
+        0
+      ],
+      "pens": null
     }
   }
 }
