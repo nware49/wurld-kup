@@ -452,8 +452,11 @@
     "88": {
       "home": "AUS",
       "away": "EGY",
-      "score": null,
-      "pens": null
+      "score": [
+        1,
+        1
+      ],
+      "pens": 2
     },
     "89": {
       "home": "PAR",
@@ -493,7 +496,7 @@
     },
     "95": {
       "home": "ARG",
-      "away": null,
+      "away": "EGY",
       "score": null,
       "pens": null
     },

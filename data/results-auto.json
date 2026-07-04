@@ -448,6 +448,15 @@
         0
       ],
       "pens": null
+    },
+    "88": {
+      "home": "AUS",
+      "away": "EGY",
+      "score": [
+        1,
+        1
+      ],
+      "pens": 2
     }
   }
 }
