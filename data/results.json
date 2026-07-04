@@ -467,7 +467,10 @@
     "90": {
       "home": "CAN",
       "away": "MAR",
-      "score": null,
+      "score": [
+        0,
+        3
+      ],
       "pens": null
     },
     "91": {
@@ -503,6 +506,12 @@
     "96": {
       "home": "SUI",
       "away": "COL",
+      "score": null,
+      "pens": null
+    },
+    "97": {
+      "home": null,
+      "away": "MAR",
       "score": null,
       "pens": null
     }

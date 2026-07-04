@@ -457,6 +457,15 @@
         1
       ],
       "pens": 2
+    },
+    "90": {
+      "home": "CAN",
+      "away": "MAR",
+      "score": [
+        0,
+        3
+      ],
+      "pens": null
     }
   }
 }
