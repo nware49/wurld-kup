@@ -461,7 +461,10 @@
     "89": {
       "home": "PAR",
       "away": "FRA",
-      "score": null,
+      "score": [
+        0,
+        1
+      ],
       "pens": null
     },
     "90": {
@@ -510,7 +513,7 @@
       "pens": null
     },
     "97": {
-      "home": null,
+      "home": "FRA",
       "away": "MAR",
       "score": null,
       "pens": null

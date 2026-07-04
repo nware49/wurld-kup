@@ -458,6 +458,15 @@
       ],
       "pens": 2
     },
+    "89": {
+      "home": "PAR",
+      "away": "FRA",
+      "score": [
+        0,
+        1
+      ],
+      "pens": null
+    },
     "90": {
       "home": "CAN",
       "away": "MAR",
