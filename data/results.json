@@ -488,7 +488,10 @@
     "92": {
       "home": "MEX",
       "away": "ENG",
-      "score": null,
+      "score": [
+        2,
+        3
+      ],
       "pens": null
     },
     "93": {
@@ -523,7 +526,7 @@
     },
     "99": {
       "home": "NOR",
-      "away": null,
+      "away": "ENG",
       "score": null,
       "pens": null
     }
