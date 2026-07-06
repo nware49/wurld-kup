@@ -497,7 +497,10 @@
     "93": {
       "home": "POR",
       "away": "ESP",
-      "score": null,
+      "score": [
+        0,
+        1
+      ],
       "pens": null
     },
     "94": {
@@ -521,6 +524,12 @@
     "97": {
       "home": "FRA",
       "away": "MAR",
+      "score": null,
+      "pens": null
+    },
+    "98": {
+      "home": "ESP",
+      "away": null,
       "score": null,
       "pens": null
     },
