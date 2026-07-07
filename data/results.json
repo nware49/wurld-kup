@@ -515,7 +515,10 @@
     "95": {
       "home": "ARG",
       "away": "EGY",
-      "score": null,
+      "score": [
+        3,
+        2
+      ],
       "pens": null
     },
     "96": {
@@ -539,6 +542,12 @@
     "99": {
       "home": "NOR",
       "away": "ENG",
+      "score": null,
+      "pens": null
+    },
+    "100": {
+      "home": "ARG",
+      "away": null,
       "score": null,
       "pens": null
     }
