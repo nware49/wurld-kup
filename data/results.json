@@ -506,7 +506,10 @@
     "94": {
       "home": "USA",
       "away": "BEL",
-      "score": null,
+      "score": [
+        1,
+        4
+      ],
       "pens": null
     },
     "95": {
@@ -529,7 +532,7 @@
     },
     "98": {
       "home": "ESP",
-      "away": null,
+      "away": "BEL",
       "score": null,
       "pens": null
     },
