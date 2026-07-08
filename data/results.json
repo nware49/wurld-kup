@@ -524,8 +524,11 @@
     "96": {
       "home": "SUI",
       "away": "COL",
-      "score": null,
-      "pens": null
+      "score": [
+        0,
+        0
+      ],
+      "pens": 1
     },
     "97": {
       "home": "FRA",
@@ -547,7 +550,7 @@
     },
     "100": {
       "home": "ARG",
-      "away": null,
+      "away": "SUI",
       "score": null,
       "pens": null
     }

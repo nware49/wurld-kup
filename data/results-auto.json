@@ -520,6 +520,15 @@
         2
       ],
       "pens": null
+    },
+    "96": {
+      "home": "SUI",
+      "away": "COL",
+      "score": [
+        0,
+        0
+      ],
+      "pens": 1
     }
   }
 }
