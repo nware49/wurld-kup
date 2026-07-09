@@ -533,7 +533,10 @@
     "97": {
       "home": "FRA",
       "away": "MAR",
-      "score": null,
+      "score": [
+        2,
+        0
+      ],
       "pens": null
     },
     "98": {
@@ -551,6 +554,12 @@
     "100": {
       "home": "ARG",
       "away": "SUI",
+      "score": null,
+      "pens": null
+    },
+    "101": {
+      "home": "FRA",
+      "away": null,
       "score": null,
       "pens": null
     }

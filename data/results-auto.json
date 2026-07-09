@@ -529,6 +529,15 @@
         0
       ],
       "pens": 1
+    },
+    "97": {
+      "home": "FRA",
+      "away": "MAR",
+      "score": [
+        2,
+        0
+      ],
+      "pens": null
     }
   }
 }
