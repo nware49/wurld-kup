@@ -538,6 +538,15 @@
         0
       ],
       "pens": null
+    },
+    "98": {
+      "home": "ESP",
+      "away": "BEL",
+      "score": [
+        2,
+        1
+      ],
+      "pens": null
     }
   }
 }

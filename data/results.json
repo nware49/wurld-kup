@@ -542,7 +542,10 @@
     "98": {
       "home": "ESP",
       "away": "BEL",
-      "score": null,
+      "score": [
+        2,
+        1
+      ],
       "pens": null
     },
     "99": {
@@ -559,7 +562,7 @@
     },
     "101": {
       "home": "FRA",
-      "away": null,
+      "away": "ESP",
       "score": null,
       "pens": null
     }
