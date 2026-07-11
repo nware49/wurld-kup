@@ -538,6 +538,15 @@
         1
       ],
       "pens": null
+    },
+    "99": {
+      "home": "NOR",
+      "away": "ENG",
+      "score": [
+        1,
+        2
+      ],
+      "pens": null
     }
   }
 }
