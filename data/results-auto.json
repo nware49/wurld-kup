@@ -485,6 +485,15 @@
       ],
       "pens": null
     },
+    "92": {
+      "home": "MEX",
+      "away": "ENG",
+      "score": [
+        2,
+        3
+      ],
+      "pens": null
+    },
     "93": {
       "home": "POR",
       "away": "ESP",
@@ -545,6 +554,15 @@
       "score": [
         1,
         2
+      ],
+      "pens": null
+    },
+    "100": {
+      "home": "ARG",
+      "away": "SUI",
+      "score": [
+        3,
+        1
       ],
       "pens": null
     }

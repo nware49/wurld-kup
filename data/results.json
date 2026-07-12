@@ -560,7 +560,10 @@
     "100": {
       "home": "ARG",
       "away": "SUI",
-      "score": null,
+      "score": [
+        3,
+        1
+      ],
       "pens": null
     },
     "101": {
@@ -571,7 +574,7 @@
     },
     "102": {
       "home": "ENG",
-      "away": null,
+      "away": "ARG",
       "score": null,
       "pens": null
     }
