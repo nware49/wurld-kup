@@ -569,12 +569,27 @@
     "101": {
       "home": "FRA",
       "away": "ESP",
-      "score": null,
+      "score": [
+        0,
+        2
+      ],
       "pens": null
     },
     "102": {
       "home": "ENG",
       "away": "ARG",
+      "score": null,
+      "pens": null
+    },
+    "103": {
+      "home": "FRA",
+      "away": null,
+      "score": null,
+      "pens": null
+    },
+    "104": {
+      "home": "ESP",
+      "away": null,
       "score": null,
       "pens": null
     }
