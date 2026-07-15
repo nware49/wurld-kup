@@ -578,18 +578,21 @@
     "102": {
       "home": "ENG",
       "away": "ARG",
-      "score": null,
+      "score": [
+        1,
+        2
+      ],
       "pens": null
     },
     "103": {
       "home": "FRA",
-      "away": null,
+      "away": "ENG",
       "score": null,
       "pens": null
     },
     "104": {
       "home": "ESP",
-      "away": null,
+      "away": "ARG",
       "score": null,
       "pens": null
     }
