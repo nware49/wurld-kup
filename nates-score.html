@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="robots" content="noindex, nofollow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leaderboard — Wurld Kup '26</title>
+  <title>Nate's Score — Wurld Kup '26</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚽</text></svg>">
 </head>
@@ -13,8 +13,8 @@
     <h1><span class="ball">⚽</span>Wurld Kup '26</h1>
     <nav>
       <a href="index.html">Predict</a>
-      <a href="leaderboard.html" class="active">Leaderboard</a>
-      <a href="nates-score.html">Nate's Score</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="nates-score.html" class="active">Nate's Score</a>
       <a href="results.html">Results</a>
       <a href="rules.html">Rules</a>
     </nav>
@@ -32,11 +32,13 @@
       </thead>
       <tbody id="board-body"></tbody>
     </table>
-    <p class="intro" style="margin-top:1rem">Click a row to see the match-by-match breakdown.
-    Click a name to view their full bracket.</p>
+    <p class="intro" style="margin-top:1rem">The leaderboard scored with the <strong>original</strong> scoring
+    mechanic: the outcome point plus a bonus for getting close to each team's score (exact both sides = full bonus,
+    exact one side or within 1 on both = half, within 1 on one side = quarter). Click a row to see the
+    match-by-match breakdown. Click a name to view their full bracket.</p>
   </main>
 
   <footer class="site">Self-hosted bracket pool</footer>
-  <script type="module" src="js/leaderboard.js"></script>
+  <script type="module" src="js/nates-score.js"></script>
 </body>
 </html>
