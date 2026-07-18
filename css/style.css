@@ -10,6 +10,54 @@
   --danger: #ff6b6b;
   --qualify: rgba(61, 220, 132, 0.14);
   --third: rgba(255, 209, 102, 0.12);
+  /* Themeable chrome */
+  --header-bg: rgba(13, 19, 33, 0.95);
+  --bar-bg: rgba(13, 19, 33, 0.97);
+  --on-accent: #07301c;
+  --shadow: none;
+  color-scheme: dark;
+}
+
+/* Light theme — applied either by explicit toggle or by system preference
+   (unless the user has explicitly chosen dark). */
+:root[data-theme="light"] {
+  --bg: #f4f6fb;
+  --bg-soft: #e8edf7;
+  --card: #ffffff;
+  --card-edge: #d4dbe9;
+  --text: #17213a;
+  --muted: #5a6a88;
+  --accent: #12a15c;
+  --accent-2: #b8820a;
+  --danger: #d64545;
+  --qualify: rgba(18, 161, 92, 0.12);
+  --third: rgba(184, 130, 10, 0.13);
+  --header-bg: rgba(244, 246, 251, 0.9);
+  --bar-bg: rgba(244, 246, 251, 0.97);
+  --on-accent: #ffffff;
+  --shadow: 0 1px 3px rgba(23, 33, 58, 0.08);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f4f6fb;
+    --bg-soft: #e8edf7;
+    --card: #ffffff;
+    --card-edge: #d4dbe9;
+    --text: #17213a;
+    --muted: #5a6a88;
+    --accent: #12a15c;
+    --accent-2: #b8820a;
+    --danger: #d64545;
+    --qualify: rgba(18, 161, 92, 0.12);
+    --third: rgba(184, 130, 10, 0.13);
+    --header-bg: rgba(244, 246, 251, 0.9);
+    --bar-bg: rgba(244, 246, 251, 0.97);
+    --on-accent: #ffffff;
+    --shadow: 0 1px 3px rgba(23, 33, 58, 0.08);
+    color-scheme: light;
+  }
 }
 
 * { box-sizing: border-box; }
@@ -28,7 +76,7 @@ header.site {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(13, 19, 33, 0.95);
+  background: var(--header-bg);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--card-edge);
   padding: 0.7rem 1.2rem;
@@ -49,6 +97,20 @@ header.site h1 .ball { margin-right: 0.4rem; }
 header.site nav { display: flex; gap: 1rem; }
 header.site nav a { color: var(--muted); text-decoration: none; font-weight: 600; }
 header.site nav a:hover, header.site nav a.active { color: var(--text); }
+
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--card-edge);
+  color: var(--muted);
+  border-radius: 8px;
+  padding: 0.3rem 0.5rem;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.theme-toggle:hover { color: var(--text); border-color: var(--muted); }
+/* Pushed to the far right on pages that have no #lock-banner to do it. */
+.theme-toggle.push { margin-left: auto; }
 
 #lock-banner {
   margin-left: auto;
@@ -106,6 +168,7 @@ input:disabled, select:disabled { opacity: 0.6; }
   border: 1px solid var(--card-edge);
   border-radius: 10px;
   padding: 0.8rem;
+  box-shadow: var(--shadow);
 }
 .group-card h3 { margin: 0 0 0.6rem; font-size: 1.05rem; color: var(--accent-2); }
 
@@ -141,6 +204,7 @@ table.mini-table tr.q3 { background: var(--third); }
   padding: 0.8rem 1rem;
   margin: 1rem 0;
   font-size: 0.9rem;
+  box-shadow: var(--shadow);
 }
 #thirds-panel .third-chip {
   display: inline-block;
@@ -177,6 +241,7 @@ table.mini-table tr.q3 { background: var(--third); }
   border-radius: 8px;
   padding: 0.4rem 0.5rem;
   font-size: 0.85rem;
+  box-shadow: var(--shadow);
 }
 .ko-match .mnum { color: var(--muted); font-size: 0.72rem; margin-bottom: 0.2rem; }
 .ko-row {
@@ -213,7 +278,7 @@ table.mini-table tr.q3 { background: var(--third); }
 .submit-bar {
   position: sticky;
   bottom: 0;
-  background: rgba(13, 19, 33, 0.97);
+  background: var(--bar-bg);
   border-top: 1px solid var(--card-edge);
   padding: 0.7rem 1.2rem;
   display: flex;
@@ -226,7 +291,7 @@ table.mini-table tr.q3 { background: var(--third); }
 
 button.primary, a.button-primary {
   background: var(--accent);
-  color: #07301c;
+  color: var(--on-accent);
   font-weight: 700;
   border: none;
   border-radius: 8px;
@@ -306,6 +371,7 @@ table.detail tr.scored td.pts { color: var(--accent); font-weight: 600; }
   border-radius: 10px;
   padding: 1rem 1.3rem;
   margin: 1rem 0;
+  box-shadow: var(--shadow);
 }
 .rules-box table { border-collapse: collapse; margin: 0.5rem 0; }
 .rules-box th, .rules-box td { border: 1px solid var(--card-edge); padding: 0.3rem 0.7rem; font-size: 0.88rem; }
@@ -339,6 +405,7 @@ footer.site {
   border-left: 3px solid var(--card-edge);
   border-radius: 8px;
   cursor: pointer;
+  box-shadow: var(--shadow);
 }
 .match-row:hover { background: var(--bg-soft); }
 .match-row.played { border-left-color: var(--accent); }
