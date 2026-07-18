@@ -587,7 +587,10 @@
     "103": {
       "home": "FRA",
       "away": "ENG",
-      "score": null,
+      "score": [
+        4,
+        6
+      ],
       "pens": null
     },
     "104": {
