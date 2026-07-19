@@ -592,6 +592,15 @@
         6
       ],
       "pens": null
+    },
+    "104": {
+      "home": "ESP",
+      "away": "ARG",
+      "score": [
+        1,
+        0
+      ],
+      "pens": null
     }
   }
 }

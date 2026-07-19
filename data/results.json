@@ -596,7 +596,10 @@
     "104": {
       "home": "ESP",
       "away": "ARG",
-      "score": null,
+      "score": [
+        1,
+        0
+      ],
       "pens": null
     }
   }
